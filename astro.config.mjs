@@ -8,8 +8,12 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   vite: {
+    optimizeDeps: {
+      include: ["tsparticles", "react-tsparticles"],
+    },
     plugins: [tailwindcss()]
   },
 
   integrations: [react()]
 });
+
