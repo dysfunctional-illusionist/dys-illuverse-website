@@ -1,0 +1,28 @@
+---
+
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+const { title, created, lastEdited } = Astro.props;
+
+---
+
+<html>
+  <head>
+    <title>{title}</title>
+  </head>
+
+  <body class="p-8 font-sans bg-white text-gray-800">
+    <header class="mb-6 border-b pb-4">
+      <h1 class="text-3xl font-bold">{title}</h1>
+      <p class="text-sm text-gray-500 mt-1">
+        🗓️ Created: {created ? new Date(created).toDateString() : 'N/A'} <br />
+        ✏️ Last Edited: {lastEdited ? new Date(lastEdited).toDateString() : 'N/A'}
+      </p>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+    
+  </body>
+</html>

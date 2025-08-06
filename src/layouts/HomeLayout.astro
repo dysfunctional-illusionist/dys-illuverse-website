@@ -1,0 +1,30 @@
+---
+import '../styles/main.css'; 
+import Hero from '../components/Hero.astro';
+import Header from '../components/Header.astro';
+import Particles from '../components/Particles.astro';
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+    </head>
+
+    <section class="relative">
+        <Particles type="stars" client:load/>
+        <div class="relative z-10">
+        <!-- Your content -->
+        </div>
+    </section>
+
+    <!-- <Hero /> -->
+    <body class="bg-white text-gray-900 font-sans">
+        <Header title={title} />
+    <main class="px-4 py-8">
+        <slot />
+    </main>
+  </body>
+</html>

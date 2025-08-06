@@ -1,0 +1,13 @@
+---
+// define props here if needed
+import '../styles/global.css';
+const { title } = Astro.props;
+---
+
+<header>
+  <h1 class="text-3xl font-bold">{title}</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+    </nav>
+</header>
