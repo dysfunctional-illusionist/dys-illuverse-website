@@ -48,7 +48,6 @@
 //   );
 // }
 
-// src/components/TestParticles.jsx
 import React, { useCallback } from "react";
 import reactParticlesPkg from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -62,7 +61,7 @@ export default function MyParticles() {
     await loadFull(engine);
   }, []);
 
-  console.log("Rendering Particles component");
+  //console.log("Rendering Particles component");
 
   return (
     <>

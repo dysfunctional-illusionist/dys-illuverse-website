@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* make sure imports are in the layout file */
 
 * {
   box-sizing: border-box;
@@ -21,14 +22,44 @@ canvas {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 0 !important; /* set to 0 so it's behind main content with z-index:1 */
+  z-index: -10 !important;
   border: 2px solid red; /* remove once you see it */
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-family: "Cantarell", sans-serif;
   color: #f1f1f1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 4rem;
+  color: #f1f1f1;
+  font-family: "Handjet", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: bold;
+  font-variation-settings:
+    "ELGR" 1,
+    "ELSH" 2;
+}
+
+h2 {
+  margin: 0;
+  font-size: 3rem;
+  color: #f1f1f1;
+  font-family: "Coda", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3, h4, h5, h6 {
+  font-size: 2rem;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Style the top navigation bar */

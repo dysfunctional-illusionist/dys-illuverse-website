@@ -1,5 +1,15 @@
 ---
+
+// styles
+import "@fontsource/handjet";
+import "@fontsource/coda";
+import "@fontsource/do-hyeon";
+import "@fontsource/cantarell";
+import "@fontsource/hi-melody";
+import "@fontsource/cutive-mono";
 import '../styles/main.css'; 
+
+// layout components
 import Hero from '../components/Hero.astro';
 import Header from '../components/Header.astro';
 //import MyParticles from '../components/Starfield.jsx';
@@ -9,11 +19,12 @@ const { title } = Astro.props;
 ---
 
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>{title}</title>
-</head>
-<body class="bg-black text-white relative">
-  <slot />
-</body>
+  <head>
+    <Header />
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
