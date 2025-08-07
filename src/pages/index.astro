@@ -2,6 +2,7 @@
 
 //import '../styles/main.css';
 import HomeLayout from '../layouts/HomeLayout.astro';
+import MyParticles from '../components/Starfield.jsx';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, 
@@ -26,6 +27,7 @@ const textCase = "uppercase";
 		</head>
 
 		<body>
+			<MyParticles client:visible />
 			<h1>{pageTitle}</h1>
 
 			<p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>

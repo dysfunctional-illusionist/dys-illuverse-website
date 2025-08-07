@@ -2,9 +2,10 @@
 import '../styles/main.css'; 
 import Hero from '../components/Hero.astro';
 import Header from '../components/Header.astro';
-import MyParticles from '../components/MyParticles.jsx';
+//import MyParticles from '../components/Starfield.jsx';
 
 const { title } = Astro.props;
+
 ---
 
 <html lang="en">
@@ -14,8 +15,7 @@ const { title } = Astro.props;
     </head>
 
     <section class="relative">
-        <!-- <MyParticles type="stars" client:load/>  -->
-        <MyParticles client:load />
+        <!-- <MyParticles client:load/>  -->
         <div class="relative z-10">
         <!-- Your content -->
         </div>
