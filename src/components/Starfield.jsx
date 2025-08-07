@@ -6,15 +6,15 @@ const Particles = reactParticlesPkg.default || reactParticlesPkg;
 
 export default function Starfield() {
   const particlesInit = useCallback(async (engine) => {
-    console.log("Initializing particles engine");
+    //console.log("Initializing particles engine");
     await loadFull(engine);
   }, []);
 
   return (
     <>
-      <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -10, color: 'white' }}>
-        Particles component loaded
-      </div>
+      {/*{ <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -10, color: 'white' }}>
+        //Particles component loaded
+      </div> }*/}
 
       <Particles
         id="tsparticles"

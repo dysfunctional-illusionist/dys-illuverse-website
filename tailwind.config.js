@@ -17,4 +17,8 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    'animate-gradient',
+    'hover:animate-gradient',
+  ],
 };
