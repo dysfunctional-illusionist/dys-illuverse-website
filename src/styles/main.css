@@ -21,11 +21,9 @@ canvas {
   left: 0;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: -1 !important;
-  border: 2px solid red; /* temporary debug */
+  z-index: 0 !important; /* set to 0 so it's behind main content with z-index:1 */
+  border: 2px solid red; /* remove once you see it */
 }
-
-
 
 body {
   margin: 0;
