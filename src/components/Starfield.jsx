@@ -1,24 +1,30 @@
-// import Particles from "react-tsparticles";
-import { loadStarsPreset } from "tsparticles-preset-stars";
-import { useCallback } from "react";
-
 import React from "react";
 import reactParticlesPkg from "react-tsparticles";
 
-// Handle CommonJS default export fallback
 const Particles = reactParticlesPkg.default || reactParticlesPkg;
 
 export default function Starfield() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadStarsPreset(engine);
-  }, []);
-
   return (
     <Particles
-      id="stars"
-      init={particlesInit}
-      options={{ preset: "stars", fullScreen: { zIndex: -1 } }}
-      style={{ position: 'fixed', top: 0, left: 0 }}
+      id="particles"
+      options={{
+        fullScreen: { enable: true, zIndex: -1 },
+        particles: {
+          number: { value: 150 },
+          size: { value: 5 },
+          color: { value: "#fff" },
+          move: { enable: true, speed: 2 },
+          shape: { type: "circle" },
+        },
+        background: { color: "#000000" },
+      }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+      }}
     />
   );
 }

@@ -13,6 +13,20 @@ html, body {
   background-image: linear-gradient(to bottom, #010004, #03000d, #050014, #070019, #08001e, #090022, #0a0027, #0a002b, #0b0030, #0b0035, #0b0039, #0c003e, #0c003e, #1c074d, #2e095c, #42096a, #560878, #73047c, #8d017f, #a70481, #c5227a, #dd3e73, #f15b6e, #ff786b);
 }
 
+canvas {
+  display: block !important;
+  pointer-events: none;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important;
+  border: 2px solid red; /* temporary debug */
+}
+
+
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
