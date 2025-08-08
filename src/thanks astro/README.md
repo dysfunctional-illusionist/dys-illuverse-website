@@ -44,3 +44,18 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## More stuff for me to remember:
+- timestamps update on build (Netlify builds tho so)
+- get all timestamps (github api) -> timestamps.json (Pkey is file path)
+- mark front matter w timestamps: true flag
+- the timescript stamp is a bit silly but
+    - get github log (offline)
+    - get GitHub API (official online logs)
+    - compare hashes to make sure they match
+    - generate json file
+- astro file: automate own url/slug, use that to find timestamps
+check the package.json file for 
+    "predev": "node src/utility/gitTimestamps.js", <--- runs whenever you do npm dev
+        REMOVE IT IF YOU'RE RESTARTING FREQUENTLY. i can only send so many access requests per hour.
+    "prebuild": "node src/utility/gitTimestamps.js", <--- runs whenever build is done (pushing to github - thank you netlify)
