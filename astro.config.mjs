@@ -5,4 +5,13 @@ import path from 'path';
 
 export default defineConfig({
   integrations: [react(), tailwind()],
+  vite: {
+    resolve: {
+      alias: {
+        '@layouts': path.resolve('./src/layouts'),
+        '@components': path.resolve('./src/components'),
+        '@pages': path.resolve('./src/pages'),
+      },
+    },
+  },
 });
