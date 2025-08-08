@@ -5,6 +5,7 @@ import { execSync } from "child_process";
 import fg from "fast-glob";
 import matter from "gray-matter";
 import fetch from "node-fetch";
+import { basename, dirname } from "path";
 
 const OWNER = "dysfunctional-illusionist";
 const REPO = "dys-illuverse-website";
@@ -95,7 +96,8 @@ async function main() {
     if (exports.timestamps === true) {
       console.log("process")
       const relativePath = path.relative(process.cwd(), file).replace(/\\/g, "/");
-      const slug = path.basename(file, path.extname(file)); // filename without extension
+      //const slug = path.basename(file, path.extname(file)); // filename without extension
+      const slug = getSlugFromFile(relativePath);
 
       console.log(`\nProcessing ${relativePath} as slug: "${slug}"...`);
 
@@ -188,8 +190,32 @@ async function getExportsFromFrontmatter(frontmatterCode) {
   return {};
 }
 
+function slugifyPart(str) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
-// (async () => {
-//   const exports = await getExportsFromAstro("src/pages/projects/myproject.astro");
-//   console.log(exports); // { timestamps: true } or {}
-// })();
+function getSlugFromFile(file, baseDir = "src/pages") {
+  // relative path from baseDir
+  let rel = path.relative(baseDir, file).replace(/\\/g, "/");
+
+  // remove file extension
+  rel = rel.replace(/\.(astro|md)$/, "");
+
+  // if ends with /index, drop the index part
+  if (rel.endsWith("/index")) {
+    rel = rel.slice(0, -"/index".length);
+  }
+
+  // slugify each path part
+  const parts = rel.split("/").map(slugifyPart);
+
+  // join with slash to form slug
+  return parts.join("/");
+}
+
+

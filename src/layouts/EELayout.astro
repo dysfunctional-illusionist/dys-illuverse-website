@@ -1,0 +1,27 @@
+---
+
+// styles
+import "@fontsource/tektur";
+import "@fontsource/jura";
+import "@fontsource/quantico";
+import "@fontsource/sour-gummy";
+import "@fontsource/inconsolata";
+import '../styles/elysium.css'; 
+
+// layout components
+import Header from '../components/Header.astro';
+
+const { title } = Astro.props;
+
+---
+
+<html lang="en">
+  <head>
+    <Header />
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

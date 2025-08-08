@@ -1,6 +1,6 @@
 ---
-import HomeLayout from "@layouts/HomeLayout.astro";
-import Starfield from "@components/Starfield.jsx";
+import HomeLayout from "@layouts/EELayout.astro";
+import CircuitBoardBackground from "@components/CircuitBoard.jsx";
 
 const pageTitle = "ETERNA'S ELYSIUM";
 export const timestamps = true;
@@ -9,12 +9,26 @@ import timestamp from "@utility/timestamps.json";
 import ShowTimestamps from "@components/Timestamps.jsx";
 
 //const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
-const { created, updated, integrity } = timestamp[Astro.url.pathname] || {};
+const slug = Astro.url.pathname.split("/").filter(Boolean).join("/");
+
+const data = timestamp[slug];
+
+//console.log("************************ debug **************************");
+// console.log("slug length:", slug.length);
+// console.log("key length:", Object.keys(timestamp)[0].length);
+// console.log("slug stringified:", JSON.stringify(slug));
+// console.log("key stringified:", JSON.stringify(Object.keys(timestamp)[0]));
+//console.log("Data at slug:", timestamp[slug]);
+const created = data?.created;
+const updated = data?.updated;
+const integrity = data?.integrity;
+//console.log({ created, updated, integrity });
+
 ---
 
 <HomeLayout>
 
-	<Starfield client:load />
+	<CircuitBoardBackground client:load />
 
 	<html lang="en">
 
