@@ -1,1 +1,8 @@
-{}
+{
+  "projects/eternas-elysium": {
+    "fullPath": "src/pages/projects/eternas-elysium/index.astro",
+    "created": "2025-08-06T20:26:34+01:00",
+    "updated": "2025-08-08T22:24:22+01:00",
+    "integrity": "hash-mismatch"
+  }
+}

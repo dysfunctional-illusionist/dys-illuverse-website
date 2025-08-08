@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        DEFAULT: '#070029ff',
+      },
       fontFamily: {
         handjet: ['Handjet', 'sans-serif'],
         coda: ['Coda', 'system-ui'],
