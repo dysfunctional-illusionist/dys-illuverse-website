@@ -11,10 +11,6 @@
 
 html {
   height: 100%;
-  background-image: linear-gradient(to bottom, #010004, #03000d, #050014, #070019, #08001e, #090022, #0a0027, #0a002b, #0b0030, #0b0035, #0b0039, #0c003e, #0c003e, #1c074d, #2e095c, #42096a, #560878, #73047c, #8d017f, #a70481, #c5227a, #dd3e73, #f15b6e, #ff786b);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 
@@ -32,6 +28,11 @@ canvas {
 
 body {
   margin: 0;
+  min-height: 100%;
+  background-image: linear-gradient(to bottom, #010004, #03000d, #050014, #070019, #08001e, #090022, #0a0027, #0a002b, #0b0030, #0b0035, #0b0039, #0c003e, #0c003e, #1c074d, #2e095c, #42096a, #560878, #73047c, #8d017f, #a70481, #c5227a, #dd3e73, #f15b6e, #ff786b);
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Makes it stretch with scroll */
+  background-size: cover;
   padding-top: 0.5rem;
   padding-right: 0.5rem;
   padding-bottom: 0.5rem;

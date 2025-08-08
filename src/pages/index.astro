@@ -3,16 +3,24 @@
 //import '../styles/main.css';
 import HomeLayout from '../layouts/HomeLayout.astro';
 import Starfield from '../components/Starfield.jsx';
+import Carousel from "../components/Carousel.jsx";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, 
 // the `assets`, `components`, and `layouts` directories, and start fresh.
 
 const pageTitle = "Homebase";
-const skillColor = "pink";
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
-const fontWeight = "bold";
-const textCase = "uppercase";
+
+// HTML entities
+// &#9825; → ♡
+// &#9829; → ♥
+// &#9733; → ★
+
+const slides = [
+  { href: "/project1", img: "/images/proj1.png", label: "🚀 Project One" },
+  { href: "/project2", img: "/images/proj2.png", label: "🎨 Project Two" },
+  { href: "/project3", img: "/images/proj3.png", label: "📚 Project Three" }
+];
 
 
 ---
@@ -31,21 +39,46 @@ const textCase = "uppercase";
 		</head>
 
 		<body>
-			<main class="px-4 py-8 max-w-screen-lg mx-auto">
+<!-- 		<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
+			<main class="grid gap-8 p-8">
 
 			<h1>{pageTitle}</h1>
 
+			<!-- intro quote for vibes -->
 			<blockquote class="border-l-4 border-purple-500 bg-purple-500/10 p-4 rounded-md font-handjet font-size-2rem text-purple-200 my-6 text-lg">
-				<p>I ♡ coding!</p>
-				handle with care: universe under construction ♡
+				handle with care: universe under construction &#9825
 			</blockquote>
 
+			<!-- Spotlight -->
+			<section class="col-span-full">
+				<h1 class="text-4xl md:text-6xl font-handjet bg-gradient-to-r from-pink-500 via-purple-500 to-red-500 bg-clip-text text-transparent">
+				welcome to... &#9734 all of this &#9734
+				</h1>
+				<p class="mt-2 text-lg text-white/80">call me illu. I like to craft fictional worlds and mess with tech and software stuff. but you're here for the stories, right? </p>
+
+				<!-- spinny -->
+				<div id="carousel" class="mt-6">
+					<Carousel slides={slides} client:load />
+				</div>
+			</section>
+
+			<!-- Featured Grid -->
+			<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<a href="/projects" class="bg-purple-700/30 hover:bg-purple-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-purple-500">PROJECTS</h2>
+				<p class="text-white/70">fun stuff I&#39;ve been working on!</p>
+				</a>
+				<a href="/blog" class="bg-pink-700/30 hover:bg-pink-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-pink-400">Blog</h2>
+				<p class="text-white/70">Read my latest posts</p>
+				</a>
+				<a href="/about" class="bg-red-700/30 hover:bg-red-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-red-200">About</h2>
+				<p class="text-white/70">trivia and socials</p>
+				</a>
+			</section>
 
 
-			<h2> header 2</h2>
-			<h3> header 3</h3>
-
-			<p>basic paragraph text</p>
 
 			</main>
 		</body>
