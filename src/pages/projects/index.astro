@@ -1,0 +1,63 @@
+---
+
+//import HomeLayout from "../../layouts/HomeLayout.astro";
+import HomeLayout from "@layouts/HomeLayout.astro";
+import Starfield from "@components/Starfield.jsx";
+import Carousel from "@components/Carousel.jsx";
+
+const pageTitle = "PROJECTS PORTAL";
+
+---
+
+
+<HomeLayout>
+	<!-- Welcome /> -->
+
+	<Starfield client:load />
+
+	<html lang="en">
+		<head>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width" />
+			<title>{pageTitle}</title>
+		</head>
+
+		<body>
+<!-- 		<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
+			<main class="grid gap-8 p-8">
+
+			<h1>{pageTitle}</h1>
+
+			<!-- intro quote for vibes -->
+			<blockquote class="border-l-4 border-cyan-600 bg-blue-500/10 p-4 rounded-md font-size-2rem text-purple-200 my-2 text-lg">
+				here you are, at the crossroads of fate.
+			</blockquote>
+
+			<!-- Featured Grid -->
+			<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				
+<a href="/projects/eternas-elysium"
+  class="bg-gradient-to-b from-black to-blue-900 px-6 py-3 rounded-lg shadow-lg shadow-purple-900/50 transition-colors duration-200 flex items-center justify-center font-handjet text-xl !text-blue-400 !hover:text-cyan-300 hover:translate-y-[-2px] hover:shadow-xl hover:shadow-purple-900/70 active:translate-y-[2px] active:shadow-md">
+  heaven
+</a>
+
+                
+
+                
+                <h2 class="text-2xl font-handjet text-purple-500">PROJECTS PORTAL</h2>
+				</a>
+				<a href="/blog" class="bg-pink-700/30 hover:bg-pink-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-pink-400">Blog</h2>
+				<p class="text-white/70">Read my latest posts</p>
+				</a>
+				<a href="/about" class="bg-red-700/30 hover:bg-red-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-red-200">About</h2>
+				<p class="text-white/70">trivia and socials</p>
+				</a>
+			</section>
+
+			</main>
+		</body>
+	</html>
+
+</HomeLayout>
