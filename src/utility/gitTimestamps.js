@@ -6,8 +6,8 @@ import fg from "fast-glob";
 import matter from "gray-matter";
 import fetch from "node-fetch";
 
-const OWNER = "YOUR_GITHUB_USERNAME";
-const REPO = "YOUR_REPO_NAME";
+const OWNER = "dysfunctional-illusionist";
+const REPO = "dys-illuverse-website";
 const BRANCH = "main";
 const TOKEN = process.env.GITHUB_TOKEN || null;
 
@@ -25,7 +25,8 @@ function runGitCommand(cmd) {
 
 function getLocalTimestamps(filePath) {
   const logFormat = "%H|%aI"; // commit hash | ISO date
-  const gitCmd = `git log --follow --format=${logFormat} -- "${filePath}"`;
+  //const gitCmd = `git log --follow --format=${logFormat} -- "${filePath}"`;
+  const gitCmd = `git log --follow --format="${logFormat}" -- "${filePath}"`;
   const output = runGitCommand(gitCmd);
   if (!output) return null;
 
@@ -42,6 +43,7 @@ function getLocalTimestamps(filePath) {
 
 async function getGitHubTimestamps(filePath) {
   const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/commits?path=${filePath}&sha=${BRANCH}&per_page=100`;
+  // https://api.github.com/repos/dysfunctional-illusionist/dys-illuverse-website/commits?path=###&sha=main&per_page=100
   const res = await fetch(apiUrl, {
     headers: {
       "User-Agent": "astro-timestamp-script",
@@ -77,10 +79,21 @@ async function main() {
   const mismatches = [];
 
   for (const file of files) {
+    //console.log("found a file");
     const content = fs.readFileSync(file, "utf-8");
-    const { data: frontmatter } = matter(content);
 
-    if (frontmatter.timestamps === true) {
+    //const { data: frontmatter } = matter(content);
+    // we gotta read the frontmatter with a JS parser
+    //const frontmatterMatch = content.match(/---\n([\s\S]*?)\n---/);
+    const frontmatterMatch = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
+    const frontmatterCode = frontmatterMatch ? frontmatterMatch[1] : "";
+
+    //console.log("passing frontmatter code: ", frontmatterCode);
+    const exports = await getExportsFromFrontmatter(frontmatterCode);
+    console.log("found timestamps true: ", exports);
+
+    if (exports.timestamps === true) {
+      console.log("process")
       const relativePath = path.relative(process.cwd(), file).replace(/\\/g, "/");
       const slug = path.basename(file, path.extname(file)); // filename without extension
 
@@ -155,3 +168,28 @@ main().catch(err => {
   console.error("Script failed:", err);
   process.exit(1);
 });
+
+import { init, parse } from "es-module-lexer";
+
+async function getExportsFromFrontmatter(frontmatterCode) {
+  await init;
+  const [imports, exports] = parse(frontmatterCode);
+
+  //console.log("get exports func: frontmatter code:\n", frontmatterCode);
+  const timestampsLineMatch = frontmatterCode.match(/export const timestamps\s*=\s*(true|false)\s*;?/);
+  //const frontmatterMatch = content.match(/---\r?\n([\s\S]*?)\r?\n---/);
+
+  if (timestampsLineMatch) {
+    const rawValue = timestampsLineMatch[1].trim();
+    if (rawValue === "true") return { timestamps: true };
+    if (rawValue === "false") return { timestamps: false };
+  }
+
+  return {};
+}
+
+
+// (async () => {
+//   const exports = await getExportsFromAstro("src/pages/projects/myproject.astro");
+//   console.log(exports); // { timestamps: true } or {}
+// })();

@@ -3,12 +3,13 @@ import HomeLayout from "@layouts/HomeLayout.astro";
 import Starfield from "@components/Starfield.jsx";
 
 const pageTitle = "ETERNA'S ELYSIUM";
+export const timestamps = true;
 
-import timestamps from "@utility/timestamps.json";
+import timestamp from "@utility/timestamps.json";
+import ShowTimestamps from "@components/Timestamps.jsx";
 
-const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
-const { created, updated, integrity } = timestamps[slug] || {};
-
+//const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
+const { created, updated, integrity } = timestamp[Astro.url.pathname] || {};
 ---
 
 <HomeLayout>
@@ -23,14 +24,18 @@ const { created, updated, integrity } = timestamps[slug] || {};
 			<title>{pageTitle}</title>
 		</head>
 
-        <main>
+        <body>
+            <main class="grid gap-8 p-8">
 
-            <timestamps created={created} updated={updated} integrity={integrity} />
+                <h1>{pageTitle}</h1>
+
+                <ShowTimestamps created={created} updated={updated} integrity={integrity} client:load/>
 
 
 
 
-        </main>
+            </main>
+        </body>
 
     </html>
 </HomeLayout>

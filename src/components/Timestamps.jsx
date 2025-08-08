@@ -1,5 +1,7 @@
-export default function Timestamps({ created, updated, integrity }) {
-  if (!created && !updated) return null;
+export default function ShowTimestamps({ created, updated, integrity }) {
+  //if (!created && !updated) return null;
+  console.log("hello world: timestamps");
+  console.log({ created, updated, integrity });
 
   const dateFmt = d => new Date(d).toLocaleDateString();
 
