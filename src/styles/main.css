@@ -1,6 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@theme {
+    --color-sunset-900: #010004;
+    --color-sunset-800: #1c074d;
+    --color-sunset-700: #2e095c;
+    --color-sunset-600: #42096a;
+    --color-sunset-500: #560878;
+    --color-sunset-400: #a70481;
+    --color-sunset-300: #dd3e73;
+    --color-sunset-200: #f15b6e;
+    --color-sunset-100: #ff786b;
+}
+
+
 
 /* make sure imports are in the layout file */
 
@@ -47,7 +60,7 @@ body {
 h1 {
   margin: 0;
   font-size: 4rem;
-  color: #ff39cd52;
+  color: #f9feff5d;
   font-family: "Handjet", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;

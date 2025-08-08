@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/fetch-timestamps.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -30,7 +31,10 @@
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "astro": "^5.12.8",
+    "fast-glob": "^3.3.3",
+    "gray-matter": "^4.0.3",
     "keen-slider": "^6.8.6",
+    "node-fetch": "^2.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-tsparticles": "^2.12.2",
