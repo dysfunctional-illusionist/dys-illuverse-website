@@ -11,6 +11,7 @@ export default defineConfig({
         '@layouts': path.resolve('./src/layouts'),
         '@components': path.resolve('./src/components'),
         '@pages': path.resolve('./src/pages'),
+        '@utility': path.resolve('./src/utility'),
       },
     },
   },

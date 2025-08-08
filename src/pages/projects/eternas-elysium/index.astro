@@ -1,0 +1,36 @@
+---
+import HomeLayout from "@layouts/HomeLayout.astro";
+import Starfield from "@components/Starfield.jsx";
+
+const pageTitle = "ETERNA'S ELYSIUM";
+
+import timestamps from "@utility/timestamps.json";
+
+const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
+const { created, updated, integrity } = timestamps[slug] || {};
+
+---
+
+<HomeLayout>
+
+	<Starfield client:load />
+
+	<html lang="en">
+
+		<head>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width" />
+			<title>{pageTitle}</title>
+		</head>
+
+        <main>
+
+            <timestamps created={created} updated={updated} integrity={integrity} />
+
+
+
+
+        </main>
+
+    </html>
+</HomeLayout>

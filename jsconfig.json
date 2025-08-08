@@ -4,7 +4,8 @@
     "paths": {
       "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@utility/*": ["utility/*"]
     }
   },
   "include": ["src"]

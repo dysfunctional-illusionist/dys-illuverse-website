@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/fetch-timestamps.js",
+    "predev": "node src/utility/gitTimestamps.js",
+    "prebuild": "node src/utility/gitTimestamps.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
