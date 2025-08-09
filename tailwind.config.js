@@ -16,6 +16,14 @@ module.exports = {
         cantarell: ['Cantarell', 'sans-serif'],
         hiMelody: ['Hi Melody', 'sans-serif'],
         cutiveMono: ['Cutive Mono', 'sans-serif'],
+        tektur: ['Tektur', 'sans-serif'],
+        jura: ['Jura', 'sans-serif'],
+        quantico: ['Quantico', 'sans-serif'],
+        sourGummy: ['Sour Gummy', 'sans-serif'],
+        inconsolata: ['Inconsolata', 'sans-serif'],
+        amarante: ['Amarante', 'sans-serif'],
+        crimsonText: ['Crimson Text', 'sans-serif'],
+        shantellSans: ['Shantell Sans', 'sans-serif']
       }
     },
   },

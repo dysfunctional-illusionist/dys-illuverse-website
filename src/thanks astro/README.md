@@ -64,3 +64,24 @@ check the package.json file for
 - if you change repo name or username, update in gitTimestamps.js
 
 - if your JSX isnt working try client:load or client:visible
+
+## Layouts and themes
+
+you can nest layouts for reusable themes.
+
+``` sh
+---
+// src/layouts/WritingSectionALayout.astro
+import ThemeSectionA from './ThemeSectionA.astro';
+import WritingPageLayout from './WritingPageLayout.astro';
+---
+
+<ThemeSectionA>
+  <WritingPageLayout>
+    <slot />
+  </WritingPageLayout>
+</ThemeSectionA>
+```
+
+themes are supposed to be non descript, whilst "home", "writing", etc. are more juicy with actual
+like... content, charset, title

@@ -15,8 +15,17 @@
 
 /* make sure font imports are in the layout file */
 
+@layer base {
+  html {
+    @apply bg-black;
+  }
+}
+
 * {
   box-sizing: border-box;
+}
+
+* a {
   font-family: "Quantico", sans-serif;
 }
 
@@ -39,6 +48,7 @@ canvas {
 }
 
 body {
+    z-index: 0;
     margin: 0;
     min-height: 100%;
     background: #000214;
@@ -52,9 +62,9 @@ body {
     padding-left: 1rem;
 }
 
-/* main {
-  padding: 1rem;
-} */
+main {
+  z-index: 10 !important;
+}
 
 
 h1 {
@@ -116,13 +126,13 @@ p {
 
 /* unvisited link */
 a:link {
-  color: rgb(255, 171, 88);
+  color: rgb(73, 167, 255);
   font-style: underline;
 }
 
 /* visited link */
 a:visited {
-  color: rgb(205, 88, 56);
+  color: rgb(87, 53, 255);
 }
 
 /* mouse over link */
@@ -145,7 +155,7 @@ a:active {
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #5afff1;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -153,15 +163,14 @@ a:active {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #6b90ff;
   color: black;
 }
 
 /* Style the content */
 .content {
-  background-color: #ddd;
+  background-color: #68cdff;
   padding: 10px;
-  height: 200px; /* Should be removed. Only for demonstration */
 }
 
 /* Style the footer */
@@ -196,10 +205,27 @@ a:active {
   animation: gradientShift 2s ease infinite;
 }
 
+div#tsparticles, div.tsparticles-wrapper {
+  z-index: 1 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+}
+
+.timestamp {
+    z-index: 10;
+}
+
 .timestamp p {
-  font-size: 0.65rem;
-  font-style: italic;
-  text-align: right;
+    font-size: 0.65rem;
+    font-family: "Inconsolata", sans-serif;
+    font-style: italic;
+    text-align: right;
+}
+
+.infront {
+    z-index: 10 !important;
 }
 
 

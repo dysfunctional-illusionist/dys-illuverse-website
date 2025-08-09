@@ -1,0 +1,20 @@
+---
+import Header from '../components/Header.astro';
+const { title } = Astro.props;
+const { class: extraClass = '' } = Astro.props;
+const combinedClass = `relative z-10 ${extraClass}`.trim();
+---
+
+<html lang="en" class="bg-black" style="background-color: #000000">
+  <head>
+    <Header />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class={combinedClass}>
+      <slot />
+    </div>
+  </body>
+</html>

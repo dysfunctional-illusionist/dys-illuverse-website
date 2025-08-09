@@ -13,13 +13,20 @@
     --color-sunset-100: #ff786b;
 }
 
-
-
 /* make sure font imports are in the layout file */
+
+@layer base {
+  html {
+    @apply bg-black;
+  }
+}
 
 * {
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+* a {
+  font-family: "Handjet", sans-serif;
 }
 
 html {
@@ -151,7 +158,6 @@ a:active {
 .content {
   background-color: #ddd;
   padding: 10px;
-  height: 200px; /* Should be removed. Only for demonstration */
 }
 
 /* Style the footer */
@@ -200,5 +206,16 @@ a:active {
   text-align: right;
 }
 
+div#tsparticles, div.tsparticles-wrapper {
+  z-index: 1 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+}
+
+.infront {
+  z-index: 10 !important;
+}
 
 

@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@theme {
+    --color-sunset-900: #010004;
+    --color-sunset-800: #1c074d;
+    --color-sunset-700: #2e095c;
+    --color-sunset-600: #42096a;
+    --color-sunset-500: #560878;
+    --color-sunset-400: #a70481;
+    --color-sunset-300: #dd3e73;
+    --color-sunset-200: #f15b6e;
+    --color-sunset-100: #ff786b;
+}
+
+/* make sure font imports are in the layout file */
+
+@layer base {
+  html {
+    @apply bg-black;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+* a {
+  font-family: "Handjet", sans-serif;
+}
+
+html {
+  height: 100%;
+  background-color: #070029ff;
+}
+
+
+canvas {
+  display: block !important;
+  pointer-events: none;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -10 !important;
+  /* border: 2px solid red; remove once you see it */
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    background: #000000;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(120, 0, 14, 1) 90%, rgba(217, 30, 30, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Makes it stretch with scroll */
+    background-size: cover;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+
+/* main {
+  padding: 1rem;
+} */
+
+
+h1 {
+  margin: 0;
+  font-size: 4rem;
+  color: #f9feff5d;
+  font-family: "Handjet", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: bold;
+  font-variation-settings:
+    "ELGR" 1,
+    "ELSH" 2;
+}
+
+h2 {
+  margin: 0;
+  font-size: 3rem;
+  color: #891fb492;
+  font-family: "Coda", system-ui, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3, h4, h5, h6 {
+  font-size: 2rem;
+  color: #785ed7bb;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+blockquote {
+  font-family: "Cutive Mono", sans-serif;
+  color: hsla(36, 100%, 90%, 0.861);
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+p {  
+  font-size: 1rem;
+  font-family: "Cantarell", sans-serif;
+  color: #f1f1f1cc;
+}
+
+/* unvisited link */
+a:link {
+  color: rgb(255, 171, 88);
+  font-style: underline;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(205, 88, 56);
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(87, 216, 255);
+}
+
+/* selected link */
+a:active {
+  color: rgb(48, 48, 255);
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, #000000, #020001, #010004);
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  background-color: #ddd;
+  padding: 10px;
+}
+
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 50% 0%;
+  }
+}
+
+/* Base class for animated gradient background */
+.animated-gradient {
+   background-image: linear-gradient(180deg, transparent, transparent, rgba(75, 0, 82, 0), rgba(243, 66, 93, 0.301), transparent);
+  background-size: 100% 200%;
+  background-position: 50% 0%;
+  transition: background-position 1.0s ease;
+}
+
+/* Trigger animation only on hover */
+.animated-gradient-hover:hover {
+  animation: gradientShift 2s ease infinite;
+}
+
+/* <a
+  href="/"
+  className="bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 text-white px-4 py-2 rounded font-bold transition hover:animate-gradient"
+>
+  Juicy Gradient Link
+</a>
+*/
+
+.timestamp p {
+  font-size: 0.65rem;
+  font-style: italic;
+  text-align: right;
+}
+
+div#tsparticles, div.tsparticles-wrapper {
+  z-index: 1 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+}
+
+.infront {
+  z-index: 10 !important;
+}
+
+

@@ -3,7 +3,7 @@ import React from 'react';
 export default function HCoHButton() {
   return (
     <button
-      onClick={() => window.location.href = '/projects/eternas-elysium'}
+      onClick={() => window.location.href = '/projects/hcoh'}
       className="
         bg-gradient-to-b from-black via-black/40 to-black/20
         font-doHyeon text-red-700 px-6 py-3 rounded-lg shadow-lg

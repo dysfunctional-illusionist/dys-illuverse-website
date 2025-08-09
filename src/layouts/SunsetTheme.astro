@@ -7,21 +7,17 @@ import "@fontsource/do-hyeon";
 import "@fontsource/cantarell";
 import "@fontsource/hi-melody";
 import "@fontsource/cutive-mono";
+import "@fontsource/tektur";
 import '../styles/main.css'; 
 
-// layout components
-import Header from '../components/Header.astro';
-//import MyParticles from '../components/Starfield.jsx';
-
-const { title } = Astro.props;
+import Starfield from '../components/Starfield.jsx';
 
 ---
 
-<html lang="en">
+<Starfield client:load />
+
+<html>
   <head>
-    <Header />
-    <meta charset="UTF-8" />
-    <title>{title}</title>
   </head>
   <body>
     <slot />

@@ -1,8 +1,6 @@
 ---
-
-//import '../styles/main.css';
-import HomeLayout from '../layouts/HomeLayout.astro';
-import Starfield from '../components/Starfield.jsx';
+import ThemeLayout from "@layouts/SunsetTheme.astro";
+import Layout from "@layouts/BaseLayout.astro";
 import Carousel from "../components/Carousel.jsx";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -26,23 +24,10 @@ const slides = [
 ---
 
 
-<HomeLayout>
-	<!-- Welcome /> -->
-
-	<Starfield client:load />
-
-	<html lang="en">
-		<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width" />
-			<title>{pageTitle}</title>
-		</head>
-
-		<body>
-<!-- 		<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
-			<main class="grid gap-8 p-8">
-
-			<h1>{pageTitle}</h1>
+<ThemeLayout>
+	<Layout>
+<!-- 	<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
+		<main class="grid gap-8 p-8">
 
 			<!-- intro quote for vibes -->
 			<blockquote class="border-l-4 border-purple-500 bg-purple-500/10 p-4 rounded-md font-handjet font-size-2rem text-purple-200 my-6 text-lg">
@@ -80,8 +65,6 @@ const slides = [
 
 
 
-			</main>
-		</body>
-	</html>
-
+		</main>
+	</Layout>
 </HomeLayout>

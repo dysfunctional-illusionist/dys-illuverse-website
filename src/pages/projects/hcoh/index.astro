@@ -1,30 +1,13 @@
 ---
-import HomeLayout from "@layouts/HomeLayout.astro";
-import Starfield from "@components/Starfield.jsx";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Theme from "@layouts/HellTheme.astro";
 
-const pageTitle = "TITLE";
+const pageTitle = "Welcome to hell.";
 
 ---
 
-<HomeLayout>
-
-	<Starfield client:load />
-
-	<html lang="en">
-
-		<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width" />
-			<title>{pageTitle}</title>
-		</head>
-
-        <main>
-
-
-
-
-
-        </main>
-
-    </html>
-</HomeLayout>
+<Theme>
+	<BaseLayout>
+		
+	</BaseLayout>
+</Theme>

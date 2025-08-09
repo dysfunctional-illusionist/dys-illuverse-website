@@ -1,59 +1,96 @@
-import Particles from "react-tsparticles";
+import React, { useCallback } from "react";
+import reactParticlesPkg from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useCallback } from "react";
 
-const FireSparks = () => {
+const Particles = reactParticlesPkg.default || reactParticlesPkg;
+
+export default function HellfireParticles() {
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
   return (
     <Particles
-      id="firesparks"
+      id="hellfire"
       init={particlesInit}
       options={{
-        fullScreen: { zIndex: -1 },
+        fullScreen: { enable: true },
+        fpsLimit: 60,
+        detectRetina: true,
+        background: {
+          //color: "#1a1a1a",
+        },
         particles: {
-          number: { value: 30, density: { enable: true, area: 800 } },
+          number: {
+            value: 200,
+            density: { enable: true, area: 800 },
+          },
           color: {
-            value: ["#ff9933", "#ff6600", "#ffcc00"],
-            animation: {
+            value: ["#ce0000ff", "#ff4400c2", "#c97713d9", "#ffc04cf0"],
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.8,
+            random: true,
+            anim: {
               enable: true,
-              speed: 20,
+              speed: 2,
+              opacity_min: 0.3,
               sync: false,
             },
           },
-          opacity: {
-            value: 0.7,
-            random: true,
-          },
           size: {
-            value: { min: 1, max: 3 },
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 5,
+              size_min: 0.4,
+              sync: false,
+            },
           },
           move: {
+            enable: true,
+            speed: 2,
             direction: "top",
-            outModes: { default: "out" },
-            speed: { min: 0.5, max: 1.5 },
-            angle: { value: 90, offset: 45 },
             random: true,
+            straight: false,
+            outModes: { default: "out" },
+            bounce: false,
           },
-          shape: { type: "circle" },
+          twinkle: {
+            particles: {
+              enable: true,
+              frequency: 0.05,
+              opacity: 1,
+            },
+          },
         },
-        emitters: {
-          position: { x: 50, y: 100 }, // % from top-left
-          rate: {
-            quantity: 2,
-            delay: 0.2,
+        interactivity: {
+          detectsOn: "canvas",
+          events: {
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
           },
-          size: {
-            width: 100,
-            height: 0,
+          modes: {
+            repulse: {
+              distance: 50,
+              duration: 0.6,
+            },
+            push: {
+              quantity: 4,
+            },
           },
-          direction: "top",
         },
       }}
     />
   );
-};
-
-export default FireSparks;
+}

@@ -8,18 +8,14 @@ import "@fontsource/sour-gummy";
 import "@fontsource/inconsolata";
 import '../styles/elysium.css'; 
 
-// layout components
-import Header from '../components/Header.astro';
-
-const { title } = Astro.props;
+import CircuitBoardBackground from "@components/CircuitBoard.jsx";
 
 ---
 
-<html lang="en">
+<CircuitBoardBackground client:load />
+
+<html>
   <head>
-    <Header />
-    <meta charset="UTF-8" />
-    <title>{title}</title>
   </head>
   <body>
     <slot />

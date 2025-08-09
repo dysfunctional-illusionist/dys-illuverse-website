@@ -1,28 +1,16 @@
 ---
-
-//import HomeLayout from "../../layouts/HomeLayout.astro";
-import HomeLayout from "@layouts/HomeLayout.astro";
-import Starfield from "@components/Starfield.jsx";
-import Carousel from "@components/Carousel.jsx";
+import ThemeLayout from "@layouts/SunsetTheme.astro";
+import Layout from "@layouts/BaseLayout.astro";
 import ElysiumButton from "@components/buttons/ElysiumBtn.jsx";
 import HCoHButton from "@components/buttons/hcohBtn.jsx";
 
 const pageTitle = "PROJECTS PORTAL";
-
 ---
 
 
-<HomeLayout>
+<ThemeLayout>
 	<!-- Welcome /> -->
-
-	<Starfield client:load />
-
-	<html lang="en">
-		<head>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width" />
-			<title>{pageTitle}</title>
-		</head>
+	<Layout>
 
 		<body>
 <!-- 		<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
@@ -45,6 +33,5 @@ const pageTitle = "PROJECTS PORTAL";
 
 			</main>
 		</body>
-	</html>
-
-</HomeLayout>
+	</Layout>
+</ThemeLayout>
