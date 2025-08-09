@@ -25,8 +25,8 @@
   box-sizing: border-box;
 }
 
-* a {
-  font-family: "Handjet", sans-serif;
+li, dl {
+  font-family: "Cantarell", sans-serif;
 }
 
 html {
@@ -60,11 +60,6 @@ body {
   padding-left: 1rem;
 }
 
-/* main {
-  padding: 1rem;
-} */
-
-
 h1 {
   margin: 0;
   font-size: 4rem;
@@ -96,8 +91,18 @@ h3, h4, h5, h6 {
 }
 
 blockquote {
+  font-family: "Hi Melody", sans-serif;
+  color: #ffe4b6f0;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+code {
   font-family: "Cutive Mono", sans-serif;
-  color: hsla(36, 100%, 90%, 0.861);
+  color: #fff6e9;
   display: block;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -114,7 +119,6 @@ p {
 /* unvisited link */
 a:link {
   color: rgb(255, 171, 88);
-  font-style: underline;
 }
 
 /* visited link */
@@ -192,14 +196,6 @@ a:active {
   animation: gradientShift 2s ease infinite;
 }
 
-/* <a
-  href="/"
-  className="bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 text-white px-4 py-2 rounded font-bold transition hover:animate-gradient"
->
-  Juicy Gradient Link
-</a>
-*/
-
 .timestamp p {
   font-size: 0.65rem;
   font-style: italic;
@@ -216,6 +212,19 @@ div#tsparticles, div.tsparticles-wrapper {
 
 .infront {
   z-index: 10 !important;
+}
+
+ul.star-bullets {
+  list-style: none;
+  padding-left: 1.25rem; /* space for bullet */
+}
+
+ul.star-bullets li::before {
+  content: "★";
+  margin-right: 0.5rem;
+  color: #ffa2c3b2;
+  position: absolute;
+  left: 0;
 }
 
 

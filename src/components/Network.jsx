@@ -72,13 +72,23 @@ export default function CircuitBoard() {
                 enable: true,
                 mode: "grab", // pull neon lines towards cursor
             },
+            onClick: {
+              enable: true,
+              mode: "attract",
+            },
             resize: true,
             },
             modes: {
-            grab: {
-                distance: 200,
-                links: { opacity: 0.6 },
-            },
+              grab: {
+                  distance: 200,
+                  links: { opacity: 0.6 },
+              },
+              attract: {
+                distance: 200, // how far the attraction reaches
+                duration: 0.7,
+                factor: 1,     // attraction force multiplier
+                easing: "ease-out-circ"
+              }
             },
         },
         }}

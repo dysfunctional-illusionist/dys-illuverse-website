@@ -1,0 +1,73 @@
+---
+import Layout from "@layouts/BaseLayout.astro";
+import Theme from "@layouts/SunsetTheme.astro";
+const stats = [
+  { label: "Origin", value: "The Depths" },
+  { label: "Class", value: "Frontend Spellcaster" },
+  { label: "Level", value: "???" },
+  { label: "Element", value: "Fire / Chaos" },
+  { label: "HP", value: "9999" },
+  { label: "Weakness", value: "Cute cat videos" },
+];
+
+const skills = [
+  "Astro", "React", "TailwindCSS", "tsparticles", "UI Summoning", "Pixel Sorcery"
+];
+---
+
+<Theme>
+	<Layout title="about me.">
+        
+        <section class="min-h-screen bg-black/40 p-4 rounded-md text-white px-6 py-12 flex flex-col items-center">
+
+        <blockquote class="text-lg italic mb-10 text-orange-300">
+        art is my hobby and hell.
+        </blockquote>
+
+        <!-- Content Container with Sidebar -->
+        <div class="flex w-full max-w-5xl gap-12">
+            <!-- Main Content: Lore + Skills -->
+            <div class="flex-1 space-y-12">
+                <!-- Lore -->
+                <div class="border border-red-800 rounded-xl p-6 bg-black/50">
+                <h2 class="text-2xl font-semibold mb-4">Lore</h2>
+                <p class="mb-4 text-orange-100">
+                    Forged in the crucible of code and caffeine, Ashen Inferno roams the digital realms crafting
+                    fiery experiences that burn themselves into memory. Wielding a potent arsenal of frontend
+                    spells, they summon beauty and chaos in equal measure.
+                </p>
+                <p class="text-orange-100">
+                    Beware: prolonged exposure may cause pixel blindness and an uncontrollable urge to
+                    redesign everything.
+                </p>
+                </div>
+
+                <!-- Skills -->
+                <div class="border border-orange-600 rounded-xl p-6 bg-black/50">
+                <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+                <ul class="flex flex-wrap gap-3">
+                    {skills.map((skill) => (
+                    <li class="px-4 py-2 bg-orange-800/50 rounded-full border border-orange-500 text-orange-200">
+                        {skill}
+                    </li>
+                    ))}
+                </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar: Boss Stats -->
+            <aside class="w-64 border border-red-600 rounded-xl p-6 bg-black/50 shrink-0">
+                <h2 class="text-2xl font-semibold mb-4">Boss Stats</h2>
+                <dl class="grid grid-cols-2 gap-y-3">
+                {stats.map((stat) => (
+                    <>
+                    <dt class="font-bold">{stat.label}</dt>
+                    <dd class="text-orange-400">{stat.value}</dd>
+                    </>
+                ))}
+                </dl>
+            </aside>
+        </div>
+    </section>
+	</Layout>
+</Theme>

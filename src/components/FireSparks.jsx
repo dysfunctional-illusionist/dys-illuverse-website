@@ -22,11 +22,11 @@ export default function HellfireParticles() {
         },
         particles: {
           number: {
-            value: 200,
-            density: { enable: true, area: 800 },
+            value: 50,
+            density: { enable: true, area: 200 },
           },
           color: {
-            value: ["#ce0000ff", "#ff4400c2", "#c97713d9", "#ffc04cf0"],
+            value: ["#ac0000ff", "#ff4400c2", "#f45b14d9", "#ffc04cf0"],
           },
           shape: {
             type: "circle",
@@ -42,7 +42,7 @@ export default function HellfireParticles() {
             },
           },
           size: {
-            value: 3,
+            value: 2,
             random: true,
             anim: {
               enable: true,
@@ -86,10 +86,30 @@ export default function HellfireParticles() {
               duration: 0.6,
             },
             push: {
-              quantity: 4,
+              quantity: 2,
             },
           },
         },
+        emitters: {
+        direction: "top",
+        life: {
+          count: 0,
+          duration: 0,
+          delay: 0,
+        },
+        rate: {
+          delay: 0.6,
+          quantity: 3,
+        },
+        size: {
+          width: 100,
+          height: 0,
+        },
+        position: {
+          x: 50, // center horizontally %
+          y: 95, // near bottom %
+        },
+      },
       }}
     />
   );

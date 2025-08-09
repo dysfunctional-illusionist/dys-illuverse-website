@@ -21,9 +21,6 @@ export default function Starfield() {
         init={particlesInit}
         options={{
           fullScreen: { enable: true }, // zIndex left default
-          background: {
-            //color: "rgba(0, 0, 0, 0.09)",
-          },
           backgroundMask: {
             enable: false,
           },
@@ -84,16 +81,31 @@ export default function Starfield() {
             size: "cover",
           },
           
-          // ✨ parallax scroll bit ✨
           interactivity: {
+            detectsOn: "window",
             events: {
-              onHover: { enable: false },
-              onClick: { enable: false },
+              onHover: {
+                enable: true,
+                mode: "bubble",
+              },
+              onClick: {
+                enable: true,
+                mode: "repulse",
+              },
               resize: true,
             },
-            modes: {},
+            modes: {
+              repulse: {
+                distance: 150,
+                duration: 0.5,
+                factor: 50, // strength
+                speed: 0.3,
+                maxSpeed: 20, 
+                easing: "ease-out-back"
+              },
+              
+            },
             detectsOn: "window",
-            // Enable this for parallax effect
             parallax: {
               enable: true,
               force: 10,

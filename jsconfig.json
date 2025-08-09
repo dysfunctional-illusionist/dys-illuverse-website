@@ -5,7 +5,8 @@
       "@layouts/*": ["layouts/*"],
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
-      "@utility/*": ["utility/*"]
+      "@utility/*": ["utility/*"],
+      "@showcase/*": ["showcase/*"],
     }
   },
   "include": ["src"]

@@ -1,13 +1,11 @@
 ---
 import ThemeLayout from "@layouts/SunsetTheme.astro";
 import Layout from "@layouts/BaseLayout.astro";
-import Carousel from "../components/Carousel.jsx";
+import Carousel from "@components/Carousel.jsx";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, 
 // the `assets`, `components`, and `layouts` directories, and start fresh.
-
-const pageTitle = "Homebase";
 
 // HTML entities
 // &#9825; → ♡
@@ -15,9 +13,9 @@ const pageTitle = "Homebase";
 // &#9733; → ★
 
 const slides = [
-  { href: "/project1", img: "/images/proj1.png", label: "🚀 Project One" },
-  { href: "/project2", img: "/images/proj2.png", label: "🎨 Project Two" },
-  { href: "/project3", img: "/images/proj3.png", label: "📚 Project Three" }
+  { href: "/projects/eternas-elysium", img: "/images/proj1.png", label: "Eterna's Elysium", desc:""},
+  { href: "/projects/hcoh", img: "/images/proj2.png", label: "High Courts of Hell", desc:"" },
+  //{ href: "/project3", img: "/images/proj3.png", label: "📚 Project Three" }
 ];
 
 
@@ -25,7 +23,7 @@ const slides = [
 
 
 <ThemeLayout>
-	<Layout>
+	<Layout title="Homebase">
 <!-- 	<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
 		<main class="grid gap-8 p-8">
 

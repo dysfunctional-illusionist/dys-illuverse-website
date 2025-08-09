@@ -17,11 +17,12 @@ export default function Carousel({ slides }) {
         className="flex transition-transform duration-1000"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {slides.map(({ href, img, label }, i) => (
+        {slides.map(({ href, img, label, desc }, i) => (
         <div key={i} className="min-w-full h-64 flex justify-center items-center bg-black/50 text-white">
           <a href={href} className="flex flex-col items-center">
-            <img src={img} alt={label} className="mb-2 max-h-40 rounded shadow-lg" />
-            <span>{label}</span>
+            {/* <img src={img} alt={label} className="mb-2 max-h-40 rounded shadow-lg" /> */}
+            <span className="text-4xl">{label}</span>
+            <span>{desc}</span>
           </a>
         </div>
       ))}

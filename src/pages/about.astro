@@ -1,0 +1,92 @@
+﻿---
+import Layout from "@layouts/BaseLayout.astro";
+import Theme from "@layouts/SunsetTheme.astro";
+import InterestsList from "@pages/showcase/InterestsList.jsx"
+
+const stats = [
+    { label: "Aliases", value: "illu, rui, celestialeds" },
+    { label: "Level", value: "21" },
+    { label: "Date of Creation", value: "9-November" },
+    { label: "Origin", value: "an island in the depths" },
+    { label: "Class", value: "Delusional Illusionist" },
+];
+
+---
+
+<Theme>
+	<Layout title="about me.">
+        
+        <section class="min-h-screen bg-black/40 p-4 rounded-md text-white px-6 py-12 flex flex-col items-center">
+
+        <blockquote class="text-lg italic mb-10 text-orange-300">
+        art is my hobby and hell.
+        </blockquote>
+
+        <!-- Content Container with Sidebar -->
+        <div class="flex w-full max-w-5xl gap-12">
+            <!-- Main Content: Lore + Skills -->
+            <div class="flex-1 space-y-12">
+                <!-- Lore -->
+                <div class="border border-red-800 rounded-xl p-6 bg-black/50">
+                    <h2 class="text-2xl font-semibold mb-4">Lore</h2>
+                    <p class="mb-2 text-purple-300/50">
+                        Forged in midst of turbulence; reforged from the dust of a collapsed star,
+                        burning out over and over just to keep the spark alive...
+                    </p>
+                    <p class="mb-2 text-orange-100/90">
+                        Forged in midst of turbulence; reforged from the dust of a collapsed star,
+                        burning out over and over just to keep the spark alive...
+                        I like to think stories can be memories - written into stars, circuits or neurons -
+                        maybe not true to reality, but a product of lived experience, hopes and dreams
+                        (or lack thereof), unfulfilled desires and... ya i'm waffling.
+                    </p>
+                    <p class="mb-2 text-red-100/90">
+                        I like making things up and I like having fun. Making stuff definitely saved my life -
+                        etched itself into the fabric of my soul. I can't imagine not having a storyline playing
+                        in my head, or not having a project to work on. So yeah - welcome to my new archive.
+                        Hopefully I'll keep this one running for a long time ^0^
+                    </p>
+                </div>
+
+                <!-- Skills -->
+                <div class="border border-orange-600 rounded-xl p-6 bg-black/50">
+                <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+                    <InterestsList client:load />
+                </div>
+            </div>
+
+            <!-- Sidebar: Boss Stats -->
+            <aside class="w-64 border border-red-600 rounded-xl p-6 bg-black/50 shrink-0">
+                <h2 class="text-2xl font-semibold text-center">illu</h2>
+                <p class="font-italic text-center text-sm text-white/20">he/they/she</p>
+                <br>
+                <dl class="grid grid-cols-2 gap-y-3">
+                {stats.map((stat) => (
+                    <>
+                    <dt class="font-bold text-white/50">{stat.label}</dt>
+                    <dd class="text-red-400">{stat.value}</dd>
+                    </>
+                ))}
+                </dl>
+                <br>
+                <div class="flex-1 space-y-12">
+                    <div class="border border-red-800 rounded-xl p-6 bg-black/50 text-center">
+                        <h3 class="text-lg text-pink-300/70">Socials that I definitely dont use consistently, but it was worth a try: </h3>
+                        <ul class="relative star-bullets">
+                            <li class="relative">
+                                <a href="https://www.instagram.com/dysfunctional_illusionist">
+                                Instagram</a>
+                            </li>
+                            <li class="relative">
+                                <a href="https://www.youtube.com/@dys_illu">
+                                YouTube</a>
+                            </li>
+                        </ul>
+                    
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+	</Layout>
+</Theme>
