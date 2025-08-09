@@ -1,18 +1,19 @@
 ---
 
-import MobileMenu from '../components/Hamburger.jsx';
+import MobileMenu from '@components/Hamburger.jsx';
+import Dropdown from "@components/DropdownPlay.jsx";
 // define props here if needed
 const { title } = Astro.props;
 
 const baseClass = "px-4 py-2 rounded transition";
 const navItems = [
   { label: "Home", href: "/", className: `${baseClass}` },
-  { label: "About", href: "/about", className: `${baseClass}` },
   {
     label: "Projects",
     href: "/projects",
     className: `${baseClass} animated-gradient animated-gradient-hover text-light hover:text-purple-500`,
   },
+  //{ label: "About", href: "/about", className: `${baseClass}` },
 ];
 
 
@@ -45,8 +46,8 @@ const navItems = [
     {navItems.map(({ label, href, className }) => (
       <a href={href} class={className}>{label}</a>
     ))}
+    <Dropdown client:load />
   </nav>
-
   <!-- Mobile -->
   <MobileMenu items={navItems} client:load />
 

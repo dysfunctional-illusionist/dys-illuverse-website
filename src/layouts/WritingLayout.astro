@@ -1,6 +1,6 @@
 ---
 
-import Header from '../components/Header.astro';
+import NavBar from '../components/NavBar.astro';
 export const timestamps = true;
 import timestamp from "@utility/timestamps.json";
 import ShowTimestamps from "@components/Timestamps.jsx";
@@ -18,7 +18,7 @@ const combinedClass = `relative z-10 ${extraClass}`.trim();
 
 <html lang="en" class="bg-black" style="background-color: #000000">
   <head>
-    <Header />
+    <NavBar />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
