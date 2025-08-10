@@ -40,30 +40,33 @@ export async function fetchGoogleDoc(docID) {
     { responseType: "text" }
   );
 
-  //console.log(res.data);
+  console.log(res.data);
 
-  const fixEncoding = fixMojibake(res.data);
+  let fixEncoding = fixMojibake(res.data);
   //console.log(fixEncoding);
-  const HTMLEntityDecode = he.decode(fixEncoding);
+  fixEncoding = he.decode(fixEncoding);
+
+  // fix faulty styling / invalid HTML
+  // Remove quotes inside style attribute values (especially inside font-family)
+  fixEncoding = fixEncoding.replace(/style="([^"]*)"/g, (match, p1) => {
+    // Remove unescaped quotes inside style value (dangerous, but might help)
+    const cleaned = p1.replace(/"/g, '');
+    return `style="${cleaned}"`;
+  });
 
   // turn font-style italic into <i> tags
   //const converti = HTMLEntityDecode.replace(/<span style="font-style:italic;">(.*?)<\/span>/g, '<i>$1</i>');
-  const converti = HTMLEntityDecode.replace(
+  const converti = fixEncoding.replace(
     /<span([^>]*)style="([^"]*font-style:\s*italic[^"]*)"([^>]*)>(.*?)<\/span>/gi,
     (_, beforeStyle, styleContent, afterStyle, innerContent) => {
       // drop all span attributes since we're converting to <i>
       return `<i>${innerContent}</i>`;
     }
   );
-
-  // remove superscripts completely (these are comments)
-  // Remove all <sup>...</sup> and everything inside
-  //const withoutSup = converti.replace(/<sup[\s\S]*?<\/sup>/gi, '');
   
   //console.log(converti);
   const cleanContent = cleanDocHTML(converti);
-  //console.log("************** cleancontent: **************", cleanContent);
-
+  //console.log(cleanContent);
   //console.log('API is sending htmlContent type:', typeof cleanContent);
   return cleanContent;
   //return content;
@@ -74,32 +77,53 @@ import sanitizeHtml from "sanitize-html";
 import { JSDOM } from "jsdom";
 
 export function cleanDocHTML(rawHtml) {
-  // Step 1: extract just body content
+  //console.log(rawHtml, "PRECLEAN");
+  rawHtml = preCleanStyles(rawHtml);
+  //console.log(rawHtml);
   const dom = new JSDOM(rawHtml);
   const document = dom.window.document;
 
-  // const footnotes = document.querySelectorAll('[class*="footnote"], [id*="footnote"]');
-  // footnotes.forEach(fn => fn.remove());
-  // const comments = document.querySelectorAll('[class*="comment"], [id*="comment"]');
-  // comments.forEach(c => c.remove());
+  [...document.querySelectorAll('[style]')].forEach(el => {
+    let style = el.getAttribute('style');
+    if (!style) return;
 
-  console.log(document.body.innerHTML);
+    // Normalize style string: lowercase, trim, replace multiple whitespace with one space
+    style = style.toLowerCase().trim().replace(/\s+/g, ' ');
 
-  const commentEls = document.querySelectorAll('[id^="cmnt"], [class^="cmnt"], [id*="cmnt"], [class*="cmnt"]');
-  console.log('Comments found:', commentEls.length);
-  commentEls.forEach(el => el.remove());
+    if (style.includes('font-family: arial')) {
+      console.log('Removing element:', el.outerHTML);
+      el.remove();
+    }
+  });
 
-  const supEls = document.querySelectorAll('sup');
-  console.log('Sup elements found:', supEls.length);
-  supEls.forEach(sup => sup.remove());
 
-  // check
-  const cCheck = document.querySelectorAll('[id^="cmnt"], [class^="cmnt"], [id*="cmnt"], [class*="cmnt"]');
-  const sCheck = document.querySelectorAll('sup');
-  console.log('post cleaning, comments/sup found:', cCheck.length, " + ", sCheck.length);
+  // Remove all sup tags (footnotes)
+  document.querySelectorAll('sup').forEach(sup => sup.remove());
+
+  // Remove all comment anchors <a id^="cmnt">
+  document.querySelectorAll('a[id^="cmnt"]').forEach(el => el.remove());
+
+  // Remove *any* element with inline style containing 'arial' (case-insensitive)
+  [...document.querySelectorAll('[style]')].forEach(el => {
+    const style = el.getAttribute('style');
+    if (!style) return;
+
+    // Normalize whitespace and line breaks to single spaces
+    const styleNormalized = style.toLowerCase().replace(/\s+/g, ' ');
+    
+    const match = styleNormalized.match(/font-family\s*:\s*([^;]+)/i);
+    if (match) {
+      const fontFamilies = match[1].replace(/['"]/g, '').trim();
+      if (fontFamilies.includes('arial')) {
+        console.log('Removing element with arial font:', el.outerHTML);
+        el.remove();
+      }
+    }
+  });
 
   // Then get cleaned body HTML
   const bodyHTML = document.body.innerHTML;
+  //console.log(bodyHTML);
 
   const allowedTags = sanitizeHtml.defaults.allowedTags.filter(tag => tag !== 'a').concat([ "img", "h1", "h2", "h3", "span", "i", "b" ]);
   // no a
@@ -137,3 +161,20 @@ function fixMojibake(str) {
   // Encode the string as Latin1 bytes, then decode as UTF-8
   return Buffer.from(str, 'latin1').toString('utf8');
 }
+
+function preCleanStyles(rawHtml) {
+  const dom = new JSDOM(rawHtml);
+  const document = dom.window.document;
+  const arialSpanRegex = /<span\b[^>]*style\s*=\s*"(?:[^"]*font-family\s*:\s*[^";]*arial[^";]*[^"]*)"[^>]*>.*?<\/span>/gis;
+  const cleanedHtml = rawHtml.replace(arialSpanRegex, '');
+  const matches = rawHtml.match(arialSpanRegex);
+  //console.log('Removing', matches?.length ?? 0, 'Arial spans');
+
+  // Also remove <sup> tags, since they tend to be footnotes/comments
+  document.querySelectorAll('sup').forEach(sup => sup.remove());
+
+  //console.log(document.body.innerHTML);
+
+  return document.body.innerHTML;
+}
+
