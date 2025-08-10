@@ -237,7 +237,11 @@ div#tsparticles, div.tsparticles-wrapper {
   background: rgba(21, 21, 21, 0.537);
 }
 
+/*  make sure it has the same styling as above */
 .invisiblepage {
   width: 400px;
   height: 600px;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 1rem;
 }

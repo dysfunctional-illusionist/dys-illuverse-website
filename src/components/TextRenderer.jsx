@@ -13,103 +13,125 @@ export default function TextRenderer({
     width: defaultPageWidth || 550,
     height: defaultPageHeight || 700,
   });
+
   const [currentPage, setCurrentPage] = useState(0);
 
-  // 1. Size adjustment effect
+  // Measure container size
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const updateSize = () => {
+      const container = containerRef.current;
+      if (!container) return;
 
-    const resizeObserver = new ResizeObserver(() => {
       const rect = container.getBoundingClientRect();
-      if (rect.width && rect.height) {
-        const maxWidth = Math.min(rect.width, defaultPageWidth);
-        const maxHeight = Math.min(rect.height, defaultPageHeight);
+      if (rect.width > 0 && rect.height > 0) {
         setPageSize({
-          width: Math.floor(maxWidth),
-          height: Math.floor(maxHeight),
+          width: Math.floor(rect.width),
+          height: Math.floor(rect.height),
         });
       }
-    });
+    };
 
-    resizeObserver.observe(container);
+    updateSize();
+    window.addEventListener("resize", updateSize);
 
-    return () => resizeObserver.disconnect();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []); // runs once
 
-    // const updateSize = () => {
-    //   if (!containerRef.current) return;
-    //   const rect = containerRef.current.getBoundingClientRect();
-
-    //   const maxWidth = Math.min(rect.width, defaultPageWidth);
-    //   const maxHeight = Math.min(rect.height, defaultPageHeight);
-
-    //   setPageSize({
-    //     width: Math.floor(maxWidth),
-    //     height: Math.floor(maxHeight),
-    //   });
-    // };
-
-    // updateSize();
-    // window.addEventListener("resize", updateSize);
-    // return () => window.removeEventListener("resize", updateSize);
-  }, [defaultPageWidth, defaultPageHeight]);
-
-  // 2. Page splitting effect
+  // Split text based on container size
   useEffect(() => {
+
+    // if pagesize is 0, go back
+    if (pageSize.width === 0 || pageSize.height === 0) return; // wait for valid size
+    
     const container = containerRef.current;
+    console.log("container size at start:", container.getBoundingClientRect());
     if (!container) return;
     container.innerHTML = "";
 
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
-    const paragraphs = Array.from(temp.querySelectorAll("p"));
-
-    container.style.width = pageSize.width + "px";
-    container.style.fontSize = "16px";
-    container.style.lineHeight = "1.5";
+    // banana split time
 
     const splitPages = [];
+    const tempDiv = document.createElement("div");
+    tempDiv.style.position = "absolute";
+    tempDiv.style.visibility = "hidden";
+    tempDiv.style.width = container.style.width;
+    tempDiv.style.fontSize = container.style.fontSize;
+    tempDiv.style.lineHeight = container.style.lineHeight;
+    document.body.appendChild(tempDiv);
 
-    paragraphs.forEach((p) => {
+    tempDiv.innerHTML = html;
+    const paragraphs = Array.from(tempDiv.querySelectorAll("p"));
+
+    // container.innerHTML = "";  // clear before splitting
+
+    paragraphs.forEach((p, pIndex) => {
+      //console.log(`Paragraph ${pIndex} starting, content:`, p.textContent);
+
+      // add to container
       container.appendChild(p.cloneNode(true));
 
-      if (container.getBoundingClientRect().height > pageSize.height) {
-        container.removeChild(container.lastChild);
+      console.log("container bounding client rect height is :", container.getBoundingClientRect().height);
+      console.log("page height is :", pageSize.height);
 
+      // if our container is now too big, remove that last child and push our container's contents into pages
+      if (container.getBoundingClientRect().height > pageSize.height * 0.98) {
+        container.removeChild(container.lastChild);
         if (container.innerHTML.trim()) {
           splitPages.push(container.innerHTML);
         }
 
-        const longPara = p.cloneNode(true);
-        const words = longPara.innerHTML.split(" ");
-        container.innerHTML = "";
-
-        let chunk = "";
+        // split para by words
+        const words = p.textContent.split(" ");
+        let chunkWords = [];
+        chunkWords = [];
         words.forEach((word) => {
-          const testChunk = chunk ? `${chunk} ${word}` : word;
-          container.innerHTML = `<p>${testChunk}</p>`;
-
-          if (container.getBoundingClientRect().height > pageSize.height) {
-            splitPages.push(`<p>${chunk}</p>`);
-            chunk = word;
-            container.innerHTML = `<p>${chunk}</p>`;
-          } else {
-            chunk = testChunk;
+          chunkWords.push(word);
+          tempDiv.innerText = chunkWords.join(" ");
+          tempDiv.style.font = container.style.font;
+          tempDiv.style.width = container.style.width;
+          if (tempDiv.getBoundingClientRect().height > pageSize.height) {
+            chunkWords.pop();
+            splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
+            chunkWords = [word];
           }
         });
 
-        if (chunk.trim()) {
-          splitPages.push(`<p>${chunk}</p>`);
-          container.innerHTML = "";
+        if (chunkWords.length) {
+          splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
         }
+        container.innerHTML = "";
       }
+
+      if (tempDiv.parentNode) {
+        tempDiv.parentNode.removeChild(tempDiv);
+      }
+
+      if (container.innerHTML.trim()) {
+        splitPages.push(container.innerHTML);
+      }
+
+      let chunk = "";
+      container.innerHTML = ""; // reset container
+
+      // words.forEach((word) => {
+      // const testChunk = chunk ? `${chunk} ${word}` : word;
+      // container.innerHTML = `<p>${testChunk}</p>`;});
+
+      // push leftover chunk if any
+      if (chunk.trim()) {
+        splitPages.push(`<p>${chunk}</p>`);
+        console.log("pushing chunk: ", chunk);
+      }
+
+    container.innerHTML = ""; // Clear container for next paragraphs
     });
 
-    // Push leftover content
+    // Push any remaining content that fit fully (if any)
     if (container.innerHTML.trim()) {
       splitPages.push(container.innerHTML);
     }
 
+      console.log("Splitting pages done", splitPages.length);
     setPages(splitPages);
   }, [html, pageSize]);
 
