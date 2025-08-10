@@ -1,10 +1,9 @@
 ---
 
-import NavBar from '../components/NavBar.astro';
-import Footer from "@components/Footer.jsx";
+import NavBar from '@components/ui/NavBar.astro';
+import Footer from "@components/ui/Footer.jsx";
 import timestamp from "@utility/timestamps.json";
-import ShowTimestamps from "@components/Timestamps.jsx";
-import DocComponent from "@components/DocComponent.jsx"
+import ShowTimestamps from "@components/ui/Timestamps.jsx";
 import { fetchGoogleDoc } from '@components/docsAPI.jsx';
 
 export const timestamps = true;
@@ -20,7 +19,8 @@ const combinedClass = `relative z-10 ${extraClass}`.trim();
 
 //import { fetchGoogleDocDual } from "@components/docsAPI.jsx";
 import fetchGoogleDocDual from "@components/docsAPI.jsx";
-const { html } = await fetchGoogleDocDual(docID);
+const { markdown } = await fetchGoogleDocDual(docID);
+import MarkdownRenderer from "@components/MarkdownRenderer.jsx";
 
 
 // make sure to paste the document ID from the end of the url.
@@ -40,8 +40,7 @@ const { html } = await fetchGoogleDocDual(docID);
     <div class={combinedClass}>
       <ShowTimestamps created={created} updated={updated} integrity={integrity}/>
       <slot />
-      <div class="prose" set:html={html} />
-
+      <MarkdownRenderer markdown={markdown} client:visible/>
 
     </div>
   </main>

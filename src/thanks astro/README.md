@@ -97,3 +97,7 @@ the scrubbing of the API output unironically far worse than setting up the actua
 pull no formatting - no italics
 pull html - spent four hours trying jsdom/he trying to clean up the html but the comments persist
 comments are formatted weirdly with an id (cmnt34) and span directly after... sups and ahref... had to work out which ones to cut
+
+dont forget to run depcheck every so often
+depcheck
+npm dedupe

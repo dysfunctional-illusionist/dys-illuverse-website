@@ -10,7 +10,13 @@ export default async function fetchGoogleDocDual(docID) {
   const html = await convertDocxToHtml(docxBuffer);
   const markdown = await htmlToMarkdown(html);
 
+  //console.log(html);
   return { html, markdown };
+}
+
+function normalizeUtf8(str) {
+  // Force the string into a proper UTF-8 buffer, then back
+  return Buffer.from(str, "utf8").toString("utf8");
 }
 
 // docx from Drive using service account
@@ -33,7 +39,6 @@ export async function fetchGoogleDoc(docID) {
     },
     { responseType: "arraybuffer" }
   );
-
   return Buffer.from(res.data);
 }
 
@@ -47,8 +52,19 @@ async function convertDocxToHtml(docxBuffer) {
     ignoreEmptyParagraphs: true
   });
 
-  return result.value; // HTML string
+  let safeHTML = result.value;
+  //return result.value; // HTML string
+  // replace unicode characters (optional, safety net)
+  //let safeHTML = escapeUnicode(result.value);
+  return normalizeUtf8(safeHTML);
 }
+
+function escapeUnicode(str) {
+  return str.replace(/[\u0080-\uFFFF]/g, c => 
+    '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')
+  );
+}
+
 
 // HTML → Markdown
 async function htmlToMarkdown(html) {
@@ -60,8 +76,10 @@ async function htmlToMarkdown(html) {
       .process(html)
   );
 
-  return markdown;
+  return normalizeUtf8(markdown);
 }
+
+
 
 // // Example usage
 // if (import.meta.url === `file://${process.argv[1]}`) {
