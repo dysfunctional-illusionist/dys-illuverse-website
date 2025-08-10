@@ -90,3 +90,6 @@ like... content, charset, title
 it's totally unsafe to store keys in a public repo,
 so i'm having to save my service account key in an environment var
 in netlify (and non-synced env on my machine :))
+
+the scrubbing of the API output unironically far worse than setting up the actual API
+comments are formatted weirdly with an id (cmnt34) and span directly after... sups and ahref... had to work out which ones to cut

@@ -59,9 +59,10 @@ export async function fetchGoogleDoc(docID) {
   // remove superscripts completely (these are comments)
   // Remove all <sup>...</sup> and everything inside
   //const withoutSup = converti.replace(/<sup[\s\S]*?<\/sup>/gi, '');
-
+  
+  //console.log(converti);
   const cleanContent = cleanDocHTML(converti);
-  console.log("************** cleancontent: **************", cleanContent);
+  //console.log("************** cleancontent: **************", cleanContent);
 
   //console.log('API is sending htmlContent type:', typeof cleanContent);
   return cleanContent;
@@ -77,47 +78,28 @@ export function cleanDocHTML(rawHtml) {
   const dom = new JSDOM(rawHtml);
   const document = dom.window.document;
 
-  // Step 2. remove superimpose
-  const firstSup = document.querySelector('sup');
+  // const footnotes = document.querySelectorAll('[class*="footnote"], [id*="footnote"]');
+  // footnotes.forEach(fn => fn.remove());
+  // const comments = document.querySelectorAll('[class*="comment"], [id*="comment"]');
+  // comments.forEach(c => c.remove());
 
-  if (firstSup) {
-    const container = document.createElement('div');
-    let keepAppending = true;
+  console.log(document.body.innerHTML);
 
-    function appendBeforeSup(node) {
-      if (!keepAppending) return;
+  const commentEls = document.querySelectorAll('[id^="cmnt"], [class^="cmnt"], [id*="cmnt"], [class*="cmnt"]');
+  console.log('Comments found:', commentEls.length);
+  commentEls.forEach(el => el.remove());
 
-      if (node === firstSup) {
-        keepAppending = false;
-        return;
-      }
+  const supEls = document.querySelectorAll('sup');
+  console.log('Sup elements found:', supEls.length);
+  supEls.forEach(sup => sup.remove());
 
-      // Clone node shallowly without children first
-      const clone = node.cloneNode(false);
+  // check
+  const cCheck = document.querySelectorAll('[id^="cmnt"], [class^="cmnt"], [id*="cmnt"], [class*="cmnt"]');
+  const sCheck = document.querySelectorAll('sup');
+  console.log('post cleaning, comments/sup found:', cCheck.length, " + ", sCheck.length);
 
-      // For each child, recurse
-      for (let child of node.childNodes) {
-        appendBeforeSup(child);
-        if (!keepAppending) break;
-      }
-
-      // Only append clone if keepAppending still true (no sup found inside)
-      if (keepAppending) {
-        container.appendChild(clone);
-      }
-    }
-
-    // Instead of walking body.firstChild, walk all body children:
-    for (let child of document.body.childNodes) {
-      appendBeforeSup(child);
-      if (!keepAppending) break;
-    }
-
-    document.body.innerHTML = container.innerHTML;
-  }
-
+  // Then get cleaned body HTML
   const bodyHTML = document.body.innerHTML;
-
 
   const allowedTags = sanitizeHtml.defaults.allowedTags.filter(tag => tag !== 'a').concat([ "img", "h1", "h2", "h3", "span", "i", "b" ]);
   // no a
