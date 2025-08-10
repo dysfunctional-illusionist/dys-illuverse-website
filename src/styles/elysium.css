@@ -235,6 +235,9 @@ div#tsparticles, div.tsparticles-wrapper {
   box-sizing: border-box;
   padding: 1rem;
   background: rgba(21, 21, 21, 0.537);
-  /* ... */
 }
 
+.invisiblepage {
+  width: 400px;
+  height: 600px;
+}
