@@ -39,7 +39,7 @@ import TextRenderer from "@components/TextRenderer.jsx";
     <div class={combinedClass}>
       <ShowTimestamps created={created} updated={updated} integrity={integrity}/>
       <slot />
-      <TextRenderer html={html} client:visible />
+      <TextRenderer html={html} paras={8} client:visible />
       <!-- <div set:html={html}></div> -->
 
     </div>
