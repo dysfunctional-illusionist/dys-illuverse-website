@@ -2,6 +2,7 @@
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import path from 'path';
+import "dotenv/config";
 
 export default defineConfig({
   integrations: [react(), tailwind()],
@@ -18,9 +19,9 @@ export default defineConfig({
     esbuild: {
       charset: 'utf8',
     },
-    server: {
-      headers: {
-        "Content-Type": "application/javascript; charset=utf-8",
-      },
+    // server: {
+    //   headers: {
+    //     "Content-Type": "application/javascript; charset=utf-8",
+    //   },
   },
 });

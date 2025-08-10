@@ -2,7 +2,7 @@ export default function Footer( ) {
 // ✦
   const spacer = " ✦ ";
 
-  console.log(spacer);
+  //console.log(spacer);
 
   return (
     <footer className="bg-gray-900/40 text-gray-300 py-6 px-6 p-4 rounded-md">

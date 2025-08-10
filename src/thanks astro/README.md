@@ -85,3 +85,8 @@ import WritingPageLayout from './WritingPageLayout.astro';
 
 themes are supposed to be non descript, whilst "home", "writing", etc. are more juicy with actual
 like... content, charset, title
+
+## Docs API
+it's totally unsafe to store keys in a public repo,
+so i'm having to save my service account key in an environment var
+in netlify (and non-synced env on my machine :))
