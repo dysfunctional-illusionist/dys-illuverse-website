@@ -10,6 +10,9 @@ export default {
       '@showcase': path.resolve('./src/showcase'),
     },
   },
+    server: {
+        middlewareMode: false,
+    },
   esbuild: {
     charset: 'utf8',
   },

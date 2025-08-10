@@ -16,7 +16,8 @@ export default async function fetchGoogleDocDual(docID) {
   // console.log(buf.toString('hex').slice(0, 50));  
 
   //console.log(html);
-  return { html, markdown };
+
+  return { html };
 }
 
 function normalizeUtf8(str) {
@@ -44,6 +45,7 @@ export async function fetchGoogleDoc(docID) {
     },
     { responseType: "arraybuffer" }
   );
+
   return Buffer.from(res.data);
 }
 
@@ -61,7 +63,9 @@ async function convertDocxToHtml(docxBuffer) {
   //return result.value; // HTML string
   // replace unicode characters (optional, safety net)
   //let safeHTML = escapeUnicode(result.value);
-  return normalizeUtf8(safeHTML);
+  //return normalizeUtf8(safeHTML);
+
+  return safeHTML;
 }
 
 function escapeUnicode(str) {
@@ -81,7 +85,8 @@ async function htmlToMarkdown(html) {
       .process(html)
   );
 
-  return normalizeUtf8(markdown);
+  //return normalizeUtf8(markdown);
+  return markdown;
 }
 
 

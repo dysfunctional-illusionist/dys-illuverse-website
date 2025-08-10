@@ -1,7 +1,9 @@
 import ReactMarkdown from 'react-markdown';
-
-export default function MarkdownRenderer({ html }) {
   //return <ReactMarkdown>{markdown}</ReactMarkdown>;
-  //const sample = 'Curly quotes: “ ” — emoji: 😊';
+
+export default function TextRenderer({ html }) {
+  //html = 'Curly quotes: “ ” — emoji: 😊';
+
+  //console.log(html);
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }

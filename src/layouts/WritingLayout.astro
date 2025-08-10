@@ -18,8 +18,8 @@ const { class: extraClass = '' } = Astro.props;
 const combinedClass = `relative z-10 ${extraClass}`.trim();
 
 import fetchGoogleDocDual from "@components/docsAPI.jsx";
-const { html } = await fetchGoogleDocDual(docID);
-import MarkdownRenderer from "@components/MarkdownRenderer.jsx";
+const {html} = await fetchGoogleDocDual(docID);
+import TextRenderer from "@components/TextRenderer.jsx";
 
 
 // make sure to paste the document ID from the end of the url.
@@ -39,7 +39,8 @@ import MarkdownRenderer from "@components/MarkdownRenderer.jsx";
     <div class={combinedClass}>
       <ShowTimestamps created={created} updated={updated} integrity={integrity}/>
       <slot />
-      <MarkdownRenderer html={html} client:visible />
+      <TextRenderer html={html} client:visible />
+      <!-- <div set:html={html}></div> -->
 
     </div>
   </main>
