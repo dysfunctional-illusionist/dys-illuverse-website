@@ -59,9 +59,8 @@ export async function fetchGoogleDoc(docID) {
   // remove superscripts completely (these are comments)
   // Remove all <sup>...</sup> and everything inside
   //const withoutSup = converti.replace(/<sup[\s\S]*?<\/sup>/gi, '');
-  const withoutSup = cutAfterFirstSup(converti);
 
-  const cleanContent = cleanDocHTML(withoutSup);
+  const cleanContent = cleanDocHTML(converti);
   console.log("************** cleancontent: **************", cleanContent);
 
   //console.log('API is sending htmlContent type:', typeof cleanContent);
@@ -76,13 +75,55 @@ import { JSDOM } from "jsdom";
 export function cleanDocHTML(rawHtml) {
   // Step 1: extract just body content
   const dom = new JSDOM(rawHtml);
-  let bodyHtml = dom.window.document.body.innerHTML;
+  const document = dom.window.document;
+
+  // Step 2. remove superimpose
+  const firstSup = document.querySelector('sup');
+
+  if (firstSup) {
+    const container = document.createElement('div');
+    let keepAppending = true;
+
+    function appendBeforeSup(node) {
+      if (!keepAppending) return;
+
+      if (node === firstSup) {
+        keepAppending = false;
+        return;
+      }
+
+      // Clone node shallowly without children first
+      const clone = node.cloneNode(false);
+
+      // For each child, recurse
+      for (let child of node.childNodes) {
+        appendBeforeSup(child);
+        if (!keepAppending) break;
+      }
+
+      // Only append clone if keepAppending still true (no sup found inside)
+      if (keepAppending) {
+        container.appendChild(clone);
+      }
+    }
+
+    // Instead of walking body.firstChild, walk all body children:
+    for (let child of document.body.childNodes) {
+      appendBeforeSup(child);
+      if (!keepAppending) break;
+    }
+
+    document.body.innerHTML = container.innerHTML;
+  }
+
+  const bodyHTML = document.body.innerHTML;
+
 
   const allowedTags = sanitizeHtml.defaults.allowedTags.filter(tag => tag !== 'a').concat([ "img", "h1", "h2", "h3", "span", "i", "b" ]);
   // no a
 
-  // Step 2: sanitize and customize styles
-  const cleanHtml = sanitizeHtml(bodyHtml, {
+  // Step 3: sanitize and customize styles
+  const cleanHtml = sanitizeHtml(bodyHTML, {
     allowedTags,
     allowedAttributes: {
       ...sanitizeHtml.defaults.allowedAttributes,
@@ -114,24 +155,3 @@ function fixMojibake(str) {
   // Encode the string as Latin1 bytes, then decode as UTF-8
   return Buffer.from(str, 'latin1').toString('utf8');
 }
-
-function cutAfterFirstSup(htmlString) {
-  const dom = new JSDOM(htmlString);
-  const document = dom.window.document;
-
-  // Find the first <sup> element
-  const firstSup = document.querySelector('sup');
-
-  if (firstSup) {
-    // Remove firstSup and all siblings after it
-    let node = firstSup;
-    while (node) {
-      const next = node.nextSibling;
-      node.remove();
-      node = next;
-    }
-  }
-
-  return document.body.innerHTML;
-}
-
