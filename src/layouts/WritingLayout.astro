@@ -18,8 +18,9 @@ const { title, docID } = Astro.props;
 const { class: extraClass = '' } = Astro.props;
 const combinedClass = `relative z-10 ${extraClass}`.trim();
 
-const docContent = await fetchGoogleDoc(docID);
-//console.log(typeof docContent, docContent);
+//import { fetchGoogleDocDual } from "@components/docsAPI.jsx";
+import fetchGoogleDocDual from "@components/docsAPI.jsx";
+const { html } = await fetchGoogleDocDual(docID);
 
 
 // make sure to paste the document ID from the end of the url.
@@ -39,7 +40,7 @@ const docContent = await fetchGoogleDoc(docID);
     <div class={combinedClass}>
       <ShowTimestamps created={created} updated={updated} integrity={integrity}/>
       <slot />
-      <DocComponent htmlContent={docContent} client:load />
+      <div class="prose" set:html={html} />
 
 
     </div>

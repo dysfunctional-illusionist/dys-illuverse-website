@@ -40,16 +40,21 @@
     "he": "^1.2.0",
     "jsdom": "^26.1.0",
     "keen-slider": "^6.8.6",
+    "mammoth": "^1.10.0",
     "node-fetch": "^2.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-tsparticles": "^2.12.2",
+    "rehype-parse": "^9.0.1",
+    "rehype-remark": "^10.0.1",
+    "remark-stringify": "^11.0.0",
     "sanitize-html": "^2.17.0",
     "tsparticles": "^2.12.0",
     "tsparticles-engine": "^2.12.0",
     "tsparticles-preset-stars": "^2.12.0",
     "tsparticles-updater-color": "^2.12.0",
-    "tsparticles-updater-opacity": "^2.12.0"
+    "tsparticles-updater-opacity": "^2.12.0",
+    "unified": "^11.0.5"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
