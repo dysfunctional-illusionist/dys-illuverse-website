@@ -10,6 +10,11 @@ export default async function fetchGoogleDocDual(docID) {
   const html = await convertDocxToHtml(docxBuffer);
   const markdown = await htmlToMarkdown(html);
 
+  // UTF-8 check
+  // console.log(html.includes('\uFFFD'));
+  // const buf = Buffer.from(html, 'utf8');
+  // console.log(buf.toString('hex').slice(0, 50));  
+
   //console.log(html);
   return { html, markdown };
 }
