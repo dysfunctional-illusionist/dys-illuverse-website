@@ -6,6 +6,7 @@ export default function TextRenderer({
   defaultPageWidth = 550,
   defaultPageHeight = 700,
 }) {
+
   const containerRef = useRef(null);
   const flipBookRef = useRef(null);
   const [pages, setPages] = useState([]);
@@ -88,18 +89,18 @@ useEffect(() => {
 
     // Check if container now overflows: if yes,
     if (container.getBoundingClientRect().height > pageSize.height) {
-      console.log("overflow: container height ", 
-        container.getBoundingClientRect().height,
-        " is more than pagesize, ",
-        pageSize.height
-      )
+      // console.log("overflow: container height ", 
+      //   container.getBoundingClientRect().height,
+      //   " is more than pagesize, ",
+      //   pageSize.height
+      // )
       
       // Remove last paragraph that caused overflow
       container.removeChild(container.lastChild);
 
       // Push accumulated container content as a page
       if (container.innerHTML.trim()) {
-        console.log("pushing full container: ", container.innerHTML.trim());
+        //console.log("pushing full container: ", container.innerHTML.trim());
         splitPages.push(container.innerHTML);
       }
 
@@ -144,6 +145,9 @@ useEffect(() => {
 
   // Set pages state
   setPages(splitPages);
+
+  console.log("Pages length:", splitPages.length);
+  console.log("First page HTML:", splitPages[0]);
 }, [html, pageSize]);
 
 
@@ -178,6 +182,7 @@ useEffect(() => {
 
   return (
     <div className="flex flex-col items-center">
+
       {/* Hidden measuring container */}
       <div
         className="invisiblepage"
@@ -194,16 +199,31 @@ useEffect(() => {
           width: pageSize.width + "px",
           height: "auto",
           whiteSpace: "normal",  // make sure wrapping is enabled
-          minHeight: "1px", 
+          minHeight: "1px", }}></div>
 
+      {/* dummy container to measure size during update */}
+      <div 
+        ref={measureRef}
+        style={{
+          visibility: "hidden",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "80vw", // match your intended page width
+          height: "auto",
+          fontSize: "16px", // match CSS for pages
+          lineHeight: "1.5",
+          padding: "1rem"
         }}
-      ></div>
+      >
+        this is hopefully hidden sample text to calculate page size.
+      </div>
 
-      {/* Flipbook */}
+      {/* actual flipbook */}
       <HTMLFlipBook
         width={pageSize.width}
         height={pageSize.height}
-        size="stretch"
+        //size="stretch"
         minWidth={315}
         maxWidth={1000}
         maxHeight={1536}
@@ -217,6 +237,8 @@ useEffect(() => {
             key={idx}
             className="p-4"
             dangerouslySetInnerHTML={{ __html: page }}
+            style={{ border: "1px solid red",
+              width: pageSize.width, height: pageSize.height }}
           />
         ))}
       </HTMLFlipBook>
