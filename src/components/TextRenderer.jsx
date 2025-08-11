@@ -35,27 +35,52 @@ export default function TextRenderer({
       container.style.whiteSpace = "normal"; // important for wrapping
     }
 
-    const updateSize = () => {
-      const container = containerRef.current;
-      if (!container) return;
+    let resizeTimeout;
 
-      const rect = container.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0) {
-        setPageSize({
+    function measurePage() {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+
+      // Ignore obviously bogus sizes
+      if (rect.width < 100 || rect.height < 100) {
+        console.log("Skipping bogus measurement:", rect.width, rect.height);
+        return;
+      }
+
+      setPageSize((prev) => {
+        if (
+          prev.width === Math.floor(rect.width) &&
+          prev.height === Math.floor(rect.height)
+        ) {
+          return prev; // no change
+        }
+        console.log("Updating page size to:", rect.width, rect.height);
+        return {
           width: Math.floor(rect.width),
           height: Math.floor(rect.height),
-        });
-      }
-      
+        };
+      });
+    }
+
+
+    function handleResize() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        measurePage();
+      }, 150); // debounce delay in ms
+    }
+
+    measurePage();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
     };
 
-    updateSize();
-    window.addEventListener("resize", updateSize);
+  }, []);
 
-    return () => window.removeEventListener("resize", updateSize);
-  }, []); // runs once
-
-  // fill container til overflow, push
+  // fill container til overflow, then push
 useEffect(() => {
   if (pageSize.width === 0 || pageSize.height === 0) return; // wait for valid size
 
@@ -147,7 +172,7 @@ useEffect(() => {
   setPages(splitPages);
 
   console.log("Pages length:", splitPages.length);
-  console.log("First page HTML:", splitPages[0]);
+  //console.log("First page HTML:", splitPages[0]);
 }, [html, pageSize]);
 
 
@@ -203,7 +228,7 @@ useEffect(() => {
 
       {/* dummy container to measure size during update */}
       <div 
-        ref={measureRef}
+        ref={containerRef}
         style={{
           visibility: "hidden",
           position: "absolute",
