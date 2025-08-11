@@ -18,6 +18,22 @@ export default function TextRenderer({
 
   // Measure container size
   useEffect(() => {
+    const sampleP = document.querySelector("p");
+    if (!sampleP) return;
+
+    const computed = window.getComputedStyle(sampleP);
+
+    if (containerRef.current) {
+      const container = containerRef.current;
+      container.style.fontSize = computed.fontSize;
+      container.style.lineHeight = computed.lineHeight;
+      container.style.fontFamily = computed.fontFamily;
+      container.style.fontWeight = computed.fontWeight;
+      container.style.letterSpacing = computed.letterSpacing;
+      container.style.wordSpacing = computed.wordSpacing;
+      container.style.whiteSpace = "normal"; // important for wrapping
+    }
+
     const updateSize = () => {
       const container = containerRef.current;
       if (!container) return;
@@ -29,6 +45,7 @@ export default function TextRenderer({
           height: Math.floor(rect.height),
         });
       }
+      
     };
 
     updateSize();
@@ -37,103 +54,99 @@ export default function TextRenderer({
     return () => window.removeEventListener("resize", updateSize);
   }, []); // runs once
 
-  // Split text based on container size
-  useEffect(() => {
+  // fill container til overflow, push
+useEffect(() => {
+  if (pageSize.width === 0 || pageSize.height === 0) return; // wait for valid size
 
-    // if pagesize is 0, go back
-    if (pageSize.width === 0 || pageSize.height === 0) return; // wait for valid size
-    
-    const container = containerRef.current;
-    console.log("container size at start:", container.getBoundingClientRect());
-    if (!container) return;
-    container.innerHTML = "";
+  const container = containerRef.current;
+  if (!container) return;
 
-    // banana split time
+  // Prepare hidden tempDiv for measuring chunks, styled like container
+  const tempDiv = document.createElement("div");
+  tempDiv.style.position = "absolute";
+  tempDiv.style.visibility = "hidden";
+  tempDiv.style.width = `${pageSize.width}px`;
+  tempDiv.style.fontSize = window.getComputedStyle(container).fontSize;
+  tempDiv.style.lineHeight = window.getComputedStyle(container).lineHeight;
+  tempDiv.style.padding = window.getComputedStyle(container).padding;
+  tempDiv.style.whiteSpace = "normal";
+  document.body.appendChild(tempDiv);
 
-    const splitPages = [];
-    const tempDiv = document.createElement("div");
-    tempDiv.style.position = "absolute";
-    tempDiv.style.visibility = "hidden";
-    tempDiv.style.width = container.style.width;
-    tempDiv.style.fontSize = container.style.fontSize;
-    tempDiv.style.lineHeight = container.style.lineHeight;
-    document.body.appendChild(tempDiv);
+  // Clear container before starting
+  container.innerHTML = "";
 
-    tempDiv.innerHTML = html;
-    const paragraphs = Array.from(tempDiv.querySelectorAll("p"));
+  // Parse paragraphs from HTML string
+  const tempWrapper = document.createElement("div");
+  tempWrapper.innerHTML = html;
+  const paragraphs = Array.from(tempWrapper.querySelectorAll("p"));
 
-    // container.innerHTML = "";  // clear before splitting
+  const splitPages = [];
 
-    paragraphs.forEach((p, pIndex) => {
-      //console.log(`Paragraph ${pIndex} starting, content:`, p.textContent);
+  paragraphs.forEach((p) => {
+    // Add paragraph clone to container
+    container.appendChild(p.cloneNode(true));
 
-      // add to container
-      container.appendChild(p.cloneNode(true));
+    // Check if container now overflows: if yes,
+    if (container.getBoundingClientRect().height > pageSize.height) {
+      console.log("overflow: container height ", 
+        container.getBoundingClientRect().height,
+        " is more than pagesize, ",
+        pageSize.height
+      )
+      
+      // Remove last paragraph that caused overflow
+      container.removeChild(container.lastChild);
 
-      console.log("container bounding client rect height is :", container.getBoundingClientRect().height);
-      console.log("page height is :", pageSize.height);
-
-      // if our container is now too big, remove that last child and push our container's contents into pages
-      if (container.getBoundingClientRect().height > pageSize.height * 0.98) {
-        container.removeChild(container.lastChild);
-        if (container.innerHTML.trim()) {
-          splitPages.push(container.innerHTML);
-        }
-
-        // split para by words
-        const words = p.textContent.split(" ");
-        let chunkWords = [];
-        chunkWords = [];
-        words.forEach((word) => {
-          chunkWords.push(word);
-          tempDiv.innerText = chunkWords.join(" ");
-          tempDiv.style.font = container.style.font;
-          tempDiv.style.width = container.style.width;
-          if (tempDiv.getBoundingClientRect().height > pageSize.height) {
-            chunkWords.pop();
-            splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
-            chunkWords = [word];
-          }
-        });
-
-        if (chunkWords.length) {
-          splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
-        }
-        container.innerHTML = "";
-      }
-
-      if (tempDiv.parentNode) {
-        tempDiv.parentNode.removeChild(tempDiv);
-      }
-
+      // Push accumulated container content as a page
       if (container.innerHTML.trim()) {
+        console.log("pushing full container: ", container.innerHTML.trim());
         splitPages.push(container.innerHTML);
       }
 
-      let chunk = "";
-      container.innerHTML = ""; // reset container
+      // Clear container to handle large paragraph by splitting words
+      container.innerHTML = "";
 
-      // words.forEach((word) => {
-      // const testChunk = chunk ? `${chunk} ${word}` : word;
-      // container.innerHTML = `<p>${testChunk}</p>`;});
+      const words = p.textContent.split(" ");
+      let chunkWords = [];
 
-      // push leftover chunk if any
-      if (chunk.trim()) {
-        splitPages.push(`<p>${chunk}</p>`);
-        console.log("pushing chunk: ", chunk);
+      words.forEach((word) => {
+        chunkWords.push(word);
+        tempDiv.innerText = chunkWords.join(" ");
+
+        if (tempDiv.getBoundingClientRect().height > pageSize.height) {
+          // Remove last word that caused overflow
+          chunkWords.pop();
+
+          // Push chunk as page
+          splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
+
+          // Start new chunk with current word
+          chunkWords = [word];
+        }
+      });
+
+      // Push leftover chunk if any
+      if (chunkWords.length) {
+        splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
       }
-
-    container.innerHTML = ""; // Clear container for next paragraphs
-    });
-
-    // Push any remaining content that fit fully (if any)
-    if (container.innerHTML.trim()) {
-      splitPages.push(container.innerHTML);
     }
+  });
 
-      console.log("Splitting pages done", splitPages.length);
-    setPages(splitPages);
-  }, [html, pageSize]);
+  // Push any remaining paragraphs accumulated in container
+  if (container.innerHTML.trim()) {
+    splitPages.push(container.innerHTML);
+  }
+
+  // Cleanup tempDiv from DOM
+  if (tempDiv.parentNode) {
+    tempDiv.parentNode.removeChild(tempDiv);
+  }
+
+  // Set pages state
+  setPages(splitPages);
+}, [html, pageSize]);
+
+
 
   // Navigation functions
   const nextPage = () => flipBookRef.current?.pageFlip().flipNext();
@@ -163,7 +176,6 @@ export default function TextRenderer({
     return <div>Loading...</div>;
   }
 
-
   return (
     <div className="flex flex-col items-center">
       {/* Hidden measuring container */}
@@ -175,7 +187,15 @@ export default function TextRenderer({
           position: "absolute",
           top: "-9999px",
           left: "-9999px",
+          padding: "0",
+          margin: "0",
+          lineHeight: "0",
+          boxSizing: "content-box",
           width: pageSize.width + "px",
+          height: "auto",
+          whiteSpace: "normal",  // make sure wrapping is enabled
+          minHeight: "1px", 
+
         }}
       ></div>
 
