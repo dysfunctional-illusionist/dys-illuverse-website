@@ -1,35 +1,63 @@
 ---
 import ThemeLayout from "@layouts/EEtheme.astro";
-import WritingLayout from "@layouts/WritingLayout.astro";
+import Layout from "@layouts/BaseLayout.astro";
+import ProseList from "@components/ui/ProseListEE.jsx";
 
-const pageTitle = "ETERNA'S ELYSIUM";
+const prosePosts = [
+  { id: 1, title: "glassfin sushi", date: "03-Aug-2025", tags: ["short"], 
+  snippet: "Miroslav goes to the seafront for 'groceries', only to catch a reel big problem.",
+  linktext: "...and a fisherman."},
+  // more posts
+];
 
-// export const timestamps = true;
-
-// import timestamp from "@utility/timestamps.json";
-// import ShowTimestamps from "@components/Timestamps.jsx";
-
-//const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
-// const slug = Astro.url.pathname.split("/").filter(Boolean).join("/");
-// const data = timestamp[slug];
-
-//console.log("************************ debug **************************");
-// console.log("slug length:", slug.length);
-// console.log("key length:", Object.keys(timestamp)[0].length);
-// console.log("slug stringified:", JSON.stringify(slug));
-// console.log("key stringified:", JSON.stringify(Object.keys(timestamp)[0]));
-//console.log("Data at slug:", timestamp[slug]);
-
-// const created = data?.created;
-// const updated = data?.updated;
-// const integrity = data?.integrity;
-
-//console.log({ created, updated, integrity });
+// const artworks = [
+//   { id: 1, title: "Circuit Deity", thumbnailUrl: "/images/circuit-deity-thumb.jpg", fullUrl: "/images/circuit-deity.jpg" },
+//   // more art
+// ];
 
 ---
 
+<meta charset="UTF-8" />
 <ThemeLayout>
-  <WritingLayout>
-    <slot />
-  </WritingLayout>
+  <Layout>
+    <section class="min-h-screen bg-black/40 p-6 rounded-md text-white px-6 py-2 flex flex-col items-center">
+      <div class="flex w-full max-w-5xl gap-12">
+          <div class="flex-1 space-y-12">
+            <h3 class="border-l-4 border-blue-500/50 p-5 text-m text-blue-300/40">
+            the existence of syncheion city is proof that the gods are still with us.
+            </h3>
+         </div>
+
+        <section class="col-span-full">
+          <br>
+          <blockquote class="inline text-pink-100/30"> ...that's what they say, anyway. </blockquote>
+          <br>
+          <blockquote class="inline text-pink-300/50"> I'll let you decide for yourself.</blockquote>
+          <code class="inline text-pink-300/50">-I</code>
+        </section>
+      </div>
+
+      <div class="block p-6 px-20">
+        <br>
+        <p>
+          Syncheion is a sprawling metropolis in the middle of a wasteland world. With an eclectic mix of cultures
+          and an edge for technological innovation, it's fast approaching the top of the list for "cities that could
+          become the next Tower of Babylon".
+        </p>
+        <p>
+          That's right - the wrath of the gods is stewing, and it's only a matter of time before the
+          floodgates break.
+        </p>
+        <p>
+          Again.
+        </p>
+      </div>
+    </section>
+
+    <section class="min-h-screen bg-black/40 p-4 rounded-md text-white px-10 py-1 flex flex-col items-center">
+      <p class="text-cyan-100/50"> waiting for that all-important entry permit? check out some stories in the meantime. </p>
+      <ProseList posts={prosePosts} />
+    </section>
+
+  </Layout>
 </ThemeLayout>

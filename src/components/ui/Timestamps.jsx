@@ -25,9 +25,9 @@ export default function ShowTimestamps({created, updated, integrity }) {
       transition-colors duration-500">
   
         <div className="timestamp">
-          {created && <p className="text-gray-100/30">Created: {dateFmt(created)}</p>}
-          {updated && <p className="text-gray-100/50">Updated: {dateFmt(updated)}</p>}
-          {integrityLabel()}
+          {created && <p className="text-gray-100/30">page created: {dateFmt(created)}</p>}
+          {updated && <p className="text-gray-100/10">page updated: {dateFmt(updated)}</p>}
+          {/* {integrityLabel()} */}
         </div>
       </a>
     </div>

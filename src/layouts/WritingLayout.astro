@@ -1,33 +1,49 @@
 ---
 
-import Header from '../components/Header.astro';
-export const timestamps = true;
+import NavBar from '@components/ui/NavBar.astro';
+import Footer from "@components/ui/Footer.jsx";
 import timestamp from "@utility/timestamps.json";
-import ShowTimestamps from "@components/Timestamps.jsx";
+import ShowTimestamps from "@components/ui/Timestamps.jsx";
+import { fetchGoogleDoc } from '@components/docsAPI.jsx';
+
+export const timestamps = true;
 const slug = Astro.url.pathname.split("/").filter(Boolean).join("/");
 const data = timestamp[slug];
 const created = data?.created;
 const updated = data?.updated;
 const integrity = data?.integrity;
 
-const { title } = Astro.props;
+const { title, docID } = Astro.props;
 const { class: extraClass = '' } = Astro.props;
 const combinedClass = `relative z-10 ${extraClass}`.trim();
+
+import fetchGoogleDocDual from "@components/docsAPI.jsx";
+const {html} = await fetchGoogleDocDual(docID);
+import TextRenderer from "@components/TextRenderer.jsx";
+
+
+// make sure to paste the document ID from the end of the url.
+// this layout is the thing that runs the get doc stuff, then passes that into DocComponent which renders the HTML
 
 ---
 
 <html lang="en" class="bg-black" style="background-color: #000000">
   <head>
-    <Header />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
 
   <main>
+    <NavBar />
     <div class={combinedClass}>
       <ShowTimestamps created={created} updated={updated} integrity={integrity}/>
       <slot />
+      <TextRenderer html={html} client:visible />
+      <!-- <div set:html={html}></div> -->
+
     </div>
   </main>
-<footer>Writing footer</footer>
+<footer>
+  <Footer client:visible/>
+</footer>

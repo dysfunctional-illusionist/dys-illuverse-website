@@ -85,3 +85,19 @@ import WritingPageLayout from './WritingPageLayout.astro';
 
 themes are supposed to be non descript, whilst "home", "writing", etc. are more juicy with actual
 like... content, charset, title
+
+## Docs API
+share doc w service account
+
+it's totally unsafe to store keys in a public repo,
+so i'm having to save my service account key in an environment var
+in netlify (and non-synced env on my machine :))
+
+the scrubbing of the API output unironically far worse than setting up the actual API
+pull no formatting - no italics
+pull html - spent four hours trying jsdom/he trying to clean up the html but the comments persist
+comments are formatted weirdly with an id (cmnt34) and span directly after... sups and ahref... had to work out which ones to cut
+
+dont forget to run depcheck every so often
+depcheck
+npm dedupe

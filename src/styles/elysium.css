@@ -56,10 +56,10 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed; /* Makes it stretch with scroll */
     background-size: cover;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.2rem;
 }
 
 main {
@@ -110,7 +110,7 @@ code {
 
 blockquote {
   font-family: "Sour Gummy", sans-serif;
-  color: #785ed7bb;
+  color: #6895ffbb;
   display: block;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -118,15 +118,21 @@ blockquote {
   margin-right: 40px;
 }
 
-p {  
+p, .arrowbtn {  
   font-size: 1rem;
   font-family: "Quantico", sans-serif;
   color: #f1f1f1cc;
 }
 
+small {  
+  font-size: 0.8rem;
+  font-family: "Quantico", sans-serif;
+  color: #bae4f698;
+}
+
 /* unvisited link */
 a:link {
-  color: rgb(73, 167, 255);
+  color: rgb(42, 149, 249);
   font-style: underline;
 }
 
@@ -137,7 +143,7 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-  color: rgb(87, 216, 255);
+  color: rgb(87, 255, 224);
 }
 
 /* selected link */
@@ -228,5 +234,27 @@ div#tsparticles, div.tsparticles-wrapper {
     z-index: 10 !important;
 }
 
+.page {
+  box-sizing: border-box;
+  background: rgba(21, 21, 21, 0.537);
+  padding-right: 0.5rem;
+  padding-left: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
 
+.invisiblepage {
+  width: 400px;
+  box-sizing: border-box;
+  padding: 1rem;
+}
 
+.stf__wrapper--portrait {
+  padding-bottom: 0 !important;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
