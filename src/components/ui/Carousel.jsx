@@ -21,8 +21,8 @@ export default function Carousel({ slides }) {
         <div key={i} className="min-w-full h-64 flex justify-center items-center bg-black/50 text-white">
           <a href={href} className="flex flex-col items-center">
             {/* <img src={img} alt={label} className="mb-2 max-h-40 rounded shadow-lg" /> */}
-            <span className="text-4xl">{label}</span>
-            <span>{desc}</span>
+            <span className="text-4xl font-handjet text-pink-400/80">{label}</span>
+            <span className="font-coda text-pink-600/40">{desc}</span>
           </a>
         </div>
       ))}
