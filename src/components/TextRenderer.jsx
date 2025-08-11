@@ -38,12 +38,14 @@ export default function TextRenderer({
     // Parse paragraphs from your html string
     const tempWrapper = document.createElement("div");
     tempWrapper.innerHTML = html;
-    const paragraphs = Array.from(tempWrapper.querySelectorAll("p"));
+    const textElements = Array.from(
+      tempWrapper.querySelectorAll("p, h1, h2, h3, h4, h5, h6")
+    );
 
     const splitPages = [];
     let currentContent = "";
 
-    paragraphs.forEach((p) => {
+    textElements.forEach((p) => {
       container.innerHTML = currentContent + p.outerHTML;
 
       // If adding this paragraph makes container too tall, push currentContent as page

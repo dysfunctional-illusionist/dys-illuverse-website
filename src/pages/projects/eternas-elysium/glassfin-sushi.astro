@@ -1,0 +1,35 @@
+---
+import ThemeLayout from "@layouts/EEtheme.astro";
+import WritingLayout from "@layouts/WritingLayout.astro";
+
+// export const timestamps = true;
+
+// import timestamp from "@utility/timestamps.json";
+// import ShowTimestamps from "@components/Timestamps.jsx";
+
+//const slug = Astro.url.pathname.split("/").filter(Boolean).pop();
+// const slug = Astro.url.pathname.split("/").filter(Boolean).join("/");
+// const data = timestamp[slug];
+
+//console.log("************************ debug **************************");
+// console.log("slug length:", slug.length);
+// console.log("key length:", Object.keys(timestamp)[0].length);
+// console.log("slug stringified:", JSON.stringify(slug));
+// console.log("key stringified:", JSON.stringify(Object.keys(timestamp)[0]));
+//console.log("Data at slug:", timestamp[slug]);
+
+// const created = data?.created;
+// const updated = data?.updated;
+// const integrity = data?.integrity;
+
+//console.log({ created, updated, integrity });
+
+//14GxKoV42DdEFCrQPDG_AA3OGbB_tWwgCUPMS7CMPPbc
+---
+
+<meta charset="UTF-8" />
+<ThemeLayout>
+  <WritingLayout title="glassfin sushi" docID="1V0H8LM48lI4n5wBrI02OLCSwE4E4Htt-yP2lUuWHdFc">
+    <slot />
+  </WritingLayout>
+</ThemeLayout>
