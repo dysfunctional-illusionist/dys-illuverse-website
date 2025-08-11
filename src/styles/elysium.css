@@ -56,10 +56,10 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed; /* Makes it stretch with scroll */
     background-size: cover;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
+    padding-top: 0.2rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.2rem;
 }
 
 main {
@@ -118,7 +118,7 @@ blockquote {
   margin-right: 40px;
 }
 
-p {  
+p, .arrowbtn {  
   font-size: 1rem;
   font-family: "Quantico", sans-serif;
   color: #f1f1f1cc;
@@ -229,12 +229,12 @@ div#tsparticles, div.tsparticles-wrapper {
 }
 
 .page {
-  width: 400px;
-  height: 600px;
-  overflow: hidden;
   box-sizing: border-box;
-  padding: 1rem;
   background: rgba(21, 21, 21, 0.537);
+  padding-right: 0.5rem;
+  padding-left: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .invisiblepage {
@@ -244,6 +244,7 @@ div#tsparticles, div.tsparticles-wrapper {
 }
 
 .stf__wrapper--portrait {
-  padding-bottom: 5% !important;
-  padding-top: 5% !important;
+  padding-bottom: 0 !important;
 }
+
+
