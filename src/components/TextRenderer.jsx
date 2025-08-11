@@ -98,82 +98,73 @@ useEffect(() => {
   tempDiv.style.whiteSpace = "normal";
   document.body.appendChild(tempDiv);
 
-  // Clear container before starting
-  container.innerHTML = "";
-
   // Parse paragraphs from HTML string
   const tempWrapper = document.createElement("div");
   tempWrapper.innerHTML = html;
   const paragraphs = Array.from(tempWrapper.querySelectorAll("p"));
 
   const splitPages = [];
+  container.innerHTML = "";
 
-  paragraphs.forEach((p) => {
-    // Add paragraph clone to container
-    container.appendChild(p.cloneNode(true));
+  let i = 0;
+  while (i < paragraphs.length) {
+    const p = paragraphs[i].cloneNode(true);
+    container.appendChild(p);
 
-    // Check if container now overflows: if yes,
     if (container.getBoundingClientRect().height > pageSize.height) {
-      // console.log("overflow: container height ", 
-      //   container.getBoundingClientRect().height,
-      //   " is more than pagesize, ",
-      //   pageSize.height
-      // )
-      
-      // Remove last paragraph that caused overflow
-      container.removeChild(container.lastChild);
+      // Paragraph caused overflow
+      container.removeChild(p);
 
-      // Push accumulated container content as a page
       if (container.innerHTML.trim()) {
-        //console.log("pushing full container: ", container.innerHTML.trim());
+        // Save full page
         splitPages.push(container.innerHTML);
+        container.innerHTML = "";
       }
 
-      // Clear container to handle large paragraph by splitting words
-      container.innerHTML = "";
+      // If paragraph alone is too big → split by words
+      tempDiv.innerHTML = "";
+      tempDiv.appendChild(p.cloneNode(true));
+      if (tempDiv.getBoundingClientRect().height > pageSize.height) {
+        const words = p.textContent.split(" ");
+        let chunkWords = [];
+        tempDiv.innerHTML = "";
 
-      const words = p.textContent.split(" ");
-      let chunkWords = [];
+        for (let w = 0; w < words.length; w++) {
+          chunkWords.push(words[w]);
+          tempDiv.innerText = chunkWords.join(" ");
 
-      words.forEach((word) => {
-        chunkWords.push(word);
-        tempDiv.innerText = chunkWords.join(" ");
-
-        if (tempDiv.getBoundingClientRect().height > pageSize.height) {
-          // Remove last word that caused overflow
-          chunkWords.pop();
-
-          // Push chunk as page
-          splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
-
-          // Start new chunk with current word
-          chunkWords = [word];
+          if (tempDiv.getBoundingClientRect().height > pageSize.height) {
+            chunkWords.pop();
+            splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
+            chunkWords = [words[w]];
+          }
         }
-      });
 
-      // Push leftover chunk if any
-      if (chunkWords.length) {
-        splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
+        if (chunkWords.length) {
+          splitPages.push(`<p>${chunkWords.join(" ")}</p>`);
+        }
+
+        i++; // move to next paragraph after splitting
       }
+      // Else: retry this paragraph on the next page
+    } else {
+      // Paragraph fit fine
+      i++;
     }
-  });
+  }
 
-  // Push any remaining paragraphs accumulated in container
+  // Push any leftover content
   if (container.innerHTML.trim()) {
     splitPages.push(container.innerHTML);
   }
 
-  // Cleanup tempDiv from DOM
-  if (tempDiv.parentNode) {
-    tempDiv.parentNode.removeChild(tempDiv);
-  }
+  // Cleanup tempDiv
+  tempDiv.remove();
 
-  // Set pages state
   setPages(splitPages);
-
   console.log("Pages length:", splitPages.length);
-  //console.log("First page HTML:", splitPages[0]);
 }, [html, pageSize]);
+
 
 
 
