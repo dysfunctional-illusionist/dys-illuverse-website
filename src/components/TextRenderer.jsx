@@ -104,14 +104,16 @@ export default function TextRenderer({
         {pages.map((page, idx) => (
           <div
             key={idx}
-            className="p-4"
+            className="p-0"
             dangerouslySetInnerHTML={{ __html: page }}
             style={{
-              width: pageSize.width,
-              height: pageSize.height,
-              border: '1px solid red',
-              boxSizing: 'border-box',
-            }}
+            width: pageSize.width,
+            height: pageSize.height,
+            border: '1px solid red',
+            boxSizing: 'border-box',
+            padding: '0',    // override padding here
+            margin: '0',     // override margin too just in case
+          }}
           />
         ))}
       </HTMLFlipBook>

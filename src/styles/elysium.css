@@ -243,3 +243,7 @@ div#tsparticles, div.tsparticles-wrapper {
   padding: 1rem;
 }
 
+.stf__wrapper--portrait {
+  padding-bottom: 5% !important;
+  padding-top: 5% !important;
+}
