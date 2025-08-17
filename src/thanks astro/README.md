@@ -69,7 +69,7 @@ check the package.json file for
 
 you can nest layouts for reusable themes.
 
-``` sh
+```
 ---
 // src/layouts/WritingSectionALayout.astro
 import ThemeSectionA from './ThemeSectionA.astro';
