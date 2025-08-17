@@ -101,3 +101,9 @@ comments are formatted weirdly with an id (cmnt34) and span directly after... su
 dont forget to run depcheck every so often
 depcheck
 npm dedupe
+
+new fonts:
+npm install @fontsource/new-font
+add it to tailwind config
+@import in css
+add to themelayout

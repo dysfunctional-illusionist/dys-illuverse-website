@@ -13,6 +13,13 @@
     --color-sunset-100: #ff786b;
 }
 
+/* @import "@fontsource/cantata-one/index.css";
+@import "@fontsource/stoke/index.css";
+@import "@fontsource/amarante/index.css";
+@import "@fontsource/crimson-text/index.css";
+@import "@fontsource/shantell-sans/index.css";
+@import "@fontsource/cutive-mono/index.css"; */
+
 /* make sure font imports are in the layout file */
 
 @layer base {
@@ -31,7 +38,9 @@
 
 html {
   height: 100%;
+  color: #ffaeaef8;
   background-color: #070029ff;
+  font-family: "Crimson Text", sans-serif;
 }
 
 
@@ -69,36 +78,33 @@ body {
 h1 {
   margin: 0;
   font-size: 4rem;
-  color: #f9feff5d;
-  font-family: "Handjet", sans-serif;
+  color: #a00000;
+  font-family: "Cantata One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: bold;
-  font-variation-settings:
-    "ELGR" 1,
-    "ELSH" 2;
 }
 
 h2 {
   margin: 0;
   font-size: 3rem;
-  color: #891fb492;
-  font-family: "Coda", system-ui, sans-serif;
+  color: #ff956bb6;
+  font-family: "Stoke", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 h3, h4, h5, h6 {
   font-size: 2rem;
-  color: #785ed7bb;
-  font-family: "Do Hyeon", sans-serif;
+  color: #ffc560bb;
+  font-family: "Amarante", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 blockquote {
-  font-family: "Cutive Mono", sans-serif;
-  color: hsla(36, 100%, 90%, 0.861);
+  font-family: "Shantell Sans", sans-serif;
+  color: #983efeab;
   display: block;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -108,8 +114,12 @@ blockquote {
 
 p {  
   font-size: 1rem;
-  font-family: "Cantarell", sans-serif;
-  color: #f1f1f1cc;
+
+}
+
+code {
+  font-family: "Cutive Mono", sans-serif;
+  color: #ffcd9db8;
 }
 
 /* unvisited link */
