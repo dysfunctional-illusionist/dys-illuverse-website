@@ -6,14 +6,14 @@ export const projects = [
         {
             href: "", 
             type: "img",
-            src: "../src/assets/iwannaplay/constellation.png",
+            src: "../public/assets/iwannaplay/constellation.png",
             label: "",
             desc:""
         },
         {
             href: "", 
             type: "img",
-            src: "../src/assets/iwannaplay/hell.png",
+            src: "../public/assets/iwannaplay/hell.png",
             label: "",
             desc:""
         }
@@ -39,19 +39,19 @@ export const projects = [
         {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/3ds/red_top.jpg",
+            src: "../public/assets/projects/3ds/red_top.jpg",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/3ds/white_motherboard.jpg",
+            src: "../public/assets/projects/3ds/white_motherboard.jpg",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/3ds/white_speaker.jpg",
+            src: "../public/assets/projects/3ds/white_speaker.jpg",
             label: "",
             desc:""
         }
@@ -73,55 +73,55 @@ export const projects = [
         {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/enemies.png",
+            src: "../public/assets/projects/astronuts/enemies.png",
             label: "",
             desc: "gameplay!"
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/target.png",
+            src: "../public/assets/projects/astronuts/target.png",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/rabbit.png",
+            src: "../public/assets/projects/astronuts/rabbit.png",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "video",
-            src: "../src/assets/projects/astronuts/rabit_nosound.mp4",
+            src: "../public/assets/projects/astronuts/rabit_nosound.mp4",
             label: "",
             desc: "my second ever blender animation!"
         }, {
             href: "", 
             type: "video",
-            src: "../src/assets/projects/astronuts/boogie.mp4",
+            src: "../public/assets/projects/astronuts/boogie.mp4",
             label: "",
             desc:"snail rigging gone wrong."
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/steak.png",
+            src: "../public/assets/projects/astronuts/steak.png",
             label: "",
             desc: "a steak that didn't make it into the final game"
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/pistachios.png",
+            src: "../public/assets/projects/astronuts/pistachios.png",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/gun1.png",
+            src: "../public/assets/projects/astronuts/gun1.png",
             label: "",
             desc:""
         }, {
             href: "", 
             type: "img",
-            src: "../src/assets/projects/astronuts/gun2.png",
+            src: "../public/assets/projects/astronuts/gun2.png",
             label: "",
             desc:""
         }
