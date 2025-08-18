@@ -1,0 +1,51 @@
+---
+import ThemeLayout from "@layouts/CybersecTheme.astro";
+import Layout from "@layouts/CyberlabLayout.astro";
+
+const lab = {
+  id: 1,
+  title: "hello world (lab setup)",
+  date: "18-August-2025",
+  category: "setting up",
+  objective: "Create a safe environment for testing and logging!",
+  steps: [
+    {
+        description: "Let's make a destructible OS container. Install Virtual Box.",
+        image: "../src/assets/labs/1/downloading.png",
+    }, {
+        description: "We need an ISO (disk image) to install the OS. Windows needs a license key, so we're going to grab the trial version (of the enterprise edition).",
+        image: "../src/assets/labs/1/enterpriseiso.png",   
+    }, {
+        description: "I got a black screen so I had to play with some settings until I checked live CD:",
+        image: "../src/assets/labs/1/checklivecd.png",
+    }, {
+        description: "Repeatedly get the same issue.",
+        image: "../src/assets/labs/1/systemreqs.png",
+    }, {
+        description: "Work out that Windows 11 wants TPM 2.0 which needs to be edited via registry keys and decide to install Windows 10 instead.",
+        image: "../src/assets/labs/1/downloadingwin10.png",
+    }, {
+        description: "We're in!",
+        image: "../src/assets/labs/1/windows.png",
+    },
+  ],
+  notes: [
+    "Windows is very picky."
+  ],
+  sources: [
+    {   sourcetitle: "oracle documentation on windows 11 installation",
+        link: "https://blogs.oracle.com/virtualization/post/install-microsoft-windows-11-on-virtualbox",
+    }
+
+  ],
+  nextLabUrl: "/cybersec/2",
+}
+
+---
+
+<meta charset="UTF-8" />
+<ThemeLayout>
+	<Layout lab={lab}>
+        
+    </Layout>
+</ThemeLayout>
