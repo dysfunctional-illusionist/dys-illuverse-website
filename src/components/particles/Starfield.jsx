@@ -25,13 +25,12 @@ export default function Starfield() {
             enable: false,
           },
           fpsLimit: 60,
-          interactivity: {
-            detectsOn: "window",
-            events: {
-              onHover: { enable: false },
-              resize: true,
-            },
-          },
+          // interactivity: {
+          //   events: {
+          //     onHover: { enable: false },
+          //     resize: true,
+          //   },
+          // },
           particles: {
             number: {
               value: 400,
@@ -105,7 +104,6 @@ export default function Starfield() {
               },
               
             },
-            detectsOn: "window",
             parallax: {
               enable: true,
               force: 10,

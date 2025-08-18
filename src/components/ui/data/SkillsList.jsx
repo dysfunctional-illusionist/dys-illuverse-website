@@ -30,7 +30,7 @@ export default function SkillList() {
         // if skill is found in tagColours, use that style - otherwise default to grey
         const colourClass = tagColours?.[skill] || "bg-gray-700/20 text-gray-300 border border-gray-500";
         return (
-          <li key="skill" className={`${colourClass} px-2 py-0.5 rounded-full`}>
+          <li key="skill" className={`${colourClass} px-2 py-1.5 rounded-full`}>
             {skill}
           </li>
         );

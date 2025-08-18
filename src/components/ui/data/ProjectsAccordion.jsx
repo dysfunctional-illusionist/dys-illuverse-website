@@ -33,7 +33,7 @@ export default function Accordion() {
           >
             <div>
               <h2 className="font-semibold text-lg">{project.title}</h2>
-              <p className="text-sm text-gray-600">{project.tagline}</p>
+              <p className="text-sm text-gray-600 mb-3">{project.tagline}</p>
               <div className="mt-1 flex flex-wrap gap-2">
                 {project.tags?.map((tag) => {
                   // safe access with fallback
@@ -57,21 +57,49 @@ export default function Accordion() {
                   <p><strong>Approach:</strong> {project.approach}</p>
                   <p><strong>Outcome:</strong> {project.outcome}</p>
 
-                  {/* Optional code block */}
+                  {/* Code block */}
                   {project.code && (
-                    <pre className="bg-gray-900 p-3 rounded text-green-400 overflow-x-auto">
+                    <pre className="bg-gray-900 p-3 rounded text-green-400 overflow-x-auto my-2">
                       <code>{project.code}</code>
                     </pre>
                   )}
 
-                  {/* Optional image */}
+                  {/* Image */}
                   {project.image && (
                     <img
                       src={project.image}
-                      alt={`${project.title} screenshot`}
-                      className="rounded mt-2 mx-auto"
+                      alt={project.title}
+                      className="rounded my-2 mx-auto"
                     />
                   )}
+
+                  {/* Embed array */}
+                  {project.embed?.map((item, i) => {
+                    if (item.type === "mp4") {
+                      return (
+                        <video
+                          key={i}
+                          src={item.src} // direct link to MP4
+                          controls
+                          className="w-full max-w-xl rounded shadow-lg my-2 mx-auto"
+                        />
+                      );
+                    }
+
+                    if (item.type === "image") {
+                      return (
+                        <img
+                          key={i}
+                          src={item.src}
+                          alt={item.label || `Embed ${i}`}
+                          className="w-full max-w-xl rounded shadow-lg my-2 mx-auto"
+                        />
+                      );
+                    }
+
+                    return null;
+                  })}
+
 
                   {/* Optional links */}
                   {project.links?.length > 0 && (
@@ -88,6 +116,7 @@ export default function Accordion() {
                       ))}
                     </div>
                   )}
+
                 </>
               )}
             </div>

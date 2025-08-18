@@ -10,7 +10,7 @@ const stats = [
 import Accordion from "@components/ui/data/ProjectsAccordion.jsx";
 
 ---
-
+<meta charset="UTF-8" />
 <Theme>
 	<Layout title="about me.">
         
@@ -21,8 +21,7 @@ import Accordion from "@components/ui/data/ProjectsAccordion.jsx";
             <!-- Main Content: Lore + Skills -->
             <div class="flex-1 space-y-12">
                 <!-- Lore -->
-                <div class="border border-gray-400 rounded-xl p-6 bg-black/50">
-                <h2 class="text-2xl font-semibold mb-4">About</h2>
+                <div class="border border-black rounded-xl p-6 bg-black/50">
                 <p class="mb-4 text-orange-100">
                     Hi! I'm Jess - 
                     I'm a Creative Computing graduate who adores problem solving and learning new things.
@@ -32,13 +31,10 @@ import Accordion from "@components/ui/data/ProjectsAccordion.jsx";
                 <p class="mb-4 text-orange-100">
                     My work blends analysis, technical rigor with curiosity and innovation, allowing me to deliver practical, secure, and engaging solutions.
                 </p>
-                <p class="text-sm text-orange-100/30">
-                    For example: this website is built from scratch using Astro, React, GitHub hosting and Netlify deployment :)
-                </p>
                 </div>
 
                 <!-- Skills -->
-                <div class="border border-gray-400 rounded-xl p-6 bg-black/50">
+                <div class="border border-black rounded-xl p-6 bg-black/50">
                 <h2 class="text-2xl font-semibold mb-4">Skills</h2>
                     <Skills />
                 </div>
@@ -46,13 +42,13 @@ import Accordion from "@components/ui/data/ProjectsAccordion.jsx";
             </div>
 
             <!-- Sidebar: Boss Stats -->
-            <aside class="w-64 border border-gray-400 rounded-xl p-6 bg-black/50 shrink-0">
+            <aside class="w-64 border border-black rounded-xl p-6 bg-black/50 shrink-0">
                 <h2 class="text-2xl font-semibold mb-4">Education & Experience</h2>
                 <dl class="grid grid-cols-2 gap-y-3">
                 {stats.map((stat) => (
                     <>
-                    <dt class="font-bold">{stat.label}</dt>
-                    <dd class="text-orange-400">{stat.value}</dd>
+                    <dt class="">{stat.label}</dt>
+                    <dd class="text-orange-400 ml-3">{stat.value}</dd>
                     </>
                 ))}
                 </dl>
@@ -65,11 +61,15 @@ import Accordion from "@components/ui/data/ProjectsAccordion.jsx";
             </aside>
         </div>
 
-        <br>
+        <br id="projects">
 
-        <div class="w-full max-w-5xl gap-12 border border-gray-400 rounded-xl p-6 bg-black/50">
-          <h2 class="text-center text-4xl font-extrabold 
-          bg-gradient-to-b from-pink-400/90 via-purple-500/70 to-indigo-600/30 bg-clip-text text-transparent"> Projects </h2>  
+        <div class="w-full max-w-5xl gap-12 border border-black rounded-xl p-6 bg-black/50">
+            <div class="content-center items-center text-center">
+                <h2 class="text-4xl font-extrabold 
+                bg-gradient-to-b from-pink-400/90 via-purple-500/70 to-indigo-600/30 bg-clip-text text-transparent"> Projects </h2>  
+                <a href="https://eager-steam-4be.notion.site/Design-Portfolio-81eedd68dafd4a9d903af9ca3719a0d4?pvs=74"
+                    class="text-2xl font-handjet inline-block"> → see this stuff on Notion! </a> 
+            </div>
           <Accordion client:load />
         </div>
     </section>
