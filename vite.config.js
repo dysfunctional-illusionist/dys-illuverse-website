@@ -7,7 +7,10 @@ export default {
       '@components': path.resolve('./src/components'),
       '@pages': path.resolve('./src/pages'),
       '@utility': path.resolve('./src/utility'),
-      '@showcase': path.resolve('./src/showcase'),
+      '@showcase': path.resolve('./src/pages/showcase'),
+      '@assets': path.resolve('./src/assets'),
+      '@labimg': path.resolve('./src/assets/labs'),
+    
     },
   },
     server: {

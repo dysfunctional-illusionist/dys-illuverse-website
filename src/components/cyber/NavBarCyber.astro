@@ -1,0 +1,29 @@
+---
+
+import MobileMenu from '@components/ui/Hamburger.jsx';
+import Dropdown from "@components/ui/data/DropdownPlay.jsx";
+// define props here if needed
+const { title } = Astro.props;
+
+const baseClass = "px-4 py-2 rounded transition";
+const navItems = [
+  { label: "Cybersec Dashboard", href: "/cybersec", className: `${baseClass}` },
+  { label: "Development Portfolio", href: "/showcase#projects", className: `${baseClass}` },
+  { label: "About", href: "/showcase", className: `${baseClass}` },
+];
+
+--- 
+
+  <!-- sticks to top of screen -->
+<header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+  <nav class="max-w-screen-xl mx-auto px-4 py-2 hidden md:flex gap-4">
+   
+    <!-- Desktop Nav -->
+    {navItems.map(({ label, href, className }) => (
+      <a href={href} class={className}>{label}</a>
+    ))}
+  </nav>
+  <!-- Mobile -->
+  <MobileMenu items={navItems} client:load />
+
+</header>

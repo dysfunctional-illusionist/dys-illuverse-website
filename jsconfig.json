@@ -6,7 +6,9 @@
       "@components/*": ["components/*"],
       "@pages/*": ["pages/*"],
       "@utility/*": ["utility/*"],
-      "@showcase/*": ["showcase/*"],
+      "@showcase/*": ["pages/showcase/*"],
+      "@assets/*": ["assets/*"],
+      "@labimg/*": ["assets/labs/*"],
     }
   },
   "include": ["src"]
