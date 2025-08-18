@@ -31,9 +31,9 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="flex gap-6 min-h-screen bg-gray-500/10 p-6 text-white">
+    <div className="flex gap-6 min-h-screen bg-gray-900/50 p-6 text-white">
       {/* left side */}
-      <div className="flex-1">
+      <div className="infront flex-1">
 
         <h1 className="text-3xl mb-6">Dashboard</h1>
 

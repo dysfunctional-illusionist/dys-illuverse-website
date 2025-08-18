@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-export default function Carousel({ slides }) {
+// format:
+// const slides = [
+//   { href: "/projects/eternas-elysium", img: "/images/proj1.png", label: "Eterna's Elysium",
+//   	desc:"city, simulations and technogod lore"},
+//   { href: "/projects/hcoh", img: "/images/proj2.png", label: "High Courts of Hell",
+//   	desc:"DEMONS. EVERYWHERE. ᵃⁿᵈ ᵗʰᵉʸ'ʳᵉ ᵃˡˡ ᵏᶦⁿᵈᵃ ʰᵒᵗ" },
+// ];
+
+export default function Carousel({ slides = [] }) {
   const [current, setCurrent] = useState(0);
 
   // Auto-rotate every 3 seconds
@@ -12,17 +20,19 @@ export default function Carousel({ slides }) {
   }, [slides.length]);
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="w-full flex justify-center">
+    <div className="mx-auto relative inline-flex overflow-hidden">
       <div
         className="flex transition-transform duration-1000"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map(({ href, img, label, desc }, i) => (
-        <div key={i} className="min-w-full h-64 flex justify-center items-center bg-black/50 text-white">
+        <div key={i} className="min-w-full flex justify-center items-center bg-black/50 text-white">
           <a href={href} className="flex flex-col items-center">
-            {/* <img src={img} alt={label} className="mb-2 max-h-40 rounded shadow-lg" /> */}
+            <img src={img} alt={label} className="mb-2 mt-3 max-h-40 rounded shadow-lg" />
             <span className="text-4xl font-handjet text-pink-400/80">{label}</span>
             <span className="font-coda text-pink-600/40">{desc}</span>
+            <br></br>
           </a>
         </div>
       ))}
@@ -40,6 +50,7 @@ export default function Carousel({ slides }) {
           />
         ))}
       </div>
+    </div>
     </div>
   );
 }
