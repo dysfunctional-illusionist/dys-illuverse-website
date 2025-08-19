@@ -11,30 +11,55 @@ const lab = {
   steps: [
     {
         description: "Let's make a destructible OS container. Install Virtual Box.",
-        image: "../src/assets/labs/1/downloading.png",
+        image: "/assets/labs/1/downloading.png",
     }, {
         description: "We need an ISO (disk image) to install the OS. Windows needs a license key, so we're going to grab the trial version (of the enterprise edition).",
-        image: "../src/assets/labs/1/enterpriseiso.png",   
+        image: "/assets/labs/1/enterpriseiso.png",   
     }, {
         description: "I got a black screen so I had to play with some settings until I checked live CD:",
-        image: "../src/assets/labs/1/checklivecd.png",
+        image: "/assets/labs/1/checklivecd.png",
     }, {
         description: "Repeatedly get the same issue.",
-        image: "../src/assets/labs/1/systemreqs.png",
+        image: "/assets/labs/1/systemreqs.png",
     }, {
         description: "Work out that Windows 11 wants TPM 2.0 which needs to be edited via registry keys and decide to install Windows 10 instead.",
-        image: "../src/assets/labs/1/downloadingwin10.png",
+        image: "/assets/labs/1/downloadingwin10.png",
     }, {
         description: "We're in!",
-        image: "../src/assets/labs/1/windows.png",
+        image: "/assets/labs/1/windows.png",
+    }, {
+        description: "Setup VM #2 (we're going with a pre-made image of Kali Linux)",
+        image: "/assets/labs/1/kali.png",
+    }, {
+        description: "Turn to 7-zip because we encounter a catastrophic failure whilst unzipping with Win11",
+        image: "/assets/labs/1/call_7zip.png",
+    }, {
+        description: "We're in!",
+        image: "/assets/labs/1/kali_done.png",
+    }, {
+        description: "Now we're installing VM #3 (the PC that does the logging) - ubuntu server edition is the lightest, and currently 24.04 LTS (Long Term Service) is the most stable.",
+        image: "/assets/labs/1/ubuntu_lts.png",
+    }, {
+        description: "Server edition comes without the Graphical User Interface, so is the most lightweight. You can see the disk image is smaller in size, too.",
+        image: "/assets/labs/1/server_smaller.png",
+    }, {
+        description: "We're gonna use Splunk free for logging. Requirements are high (but I'm one person on a laptop- I'm going to give it 6GB RAM / 10GB hard drive and hope for the best).",
+        image: "/assets/labs/1/splunk_req.png",
     },
   ],
   notes: [
     "Windows is very picky."
   ],
   sources: [
-    {   sourcetitle: "oracle documentation on windows 11 installation",
-        link: "https://blogs.oracle.com/virtualization/post/install-microsoft-windows-11-on-virtualbox",
+    {
+      sourcetitle: "SIEM lab setup",
+      link: "https://www.linkedin.com/pulse/requirements-setting-up-soc-home-lab-deborah-ayoola-vmrxf",
+    }, {   
+      sourcetitle: "oracle documentation on windows 11 installation",
+      link: "https://blogs.oracle.com/virtualization/post/install-microsoft-windows-11-on-virtualbox",
+    }, {
+      sourcetitle: "Ubuntu Noble Numbat install",
+      link: "https://releases.ubuntu.com/noble/",
     }
 
   ],

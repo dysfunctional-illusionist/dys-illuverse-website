@@ -34,7 +34,7 @@ const { lab = {} } = Astro.props;
           <h2 class="text-xl font-semibold mb-4 text-center">Steps</h2>
           {lab.steps.map((step, idx) => (
             <div class="bg-gray-900/50 p-4 rounded-lg">
-              <h3 class="text-right font-bold text-sm text-cyan-400/40 mb-1">Step {idx + 1}</h3>
+              <h3 class="text-right font-bold text-m text-cyan-400/40 mb-1">Step {idx + 1}</h3>
               <p class="text-gray-400 mb-2">{step.description}</p>
 
               {step.code ? (

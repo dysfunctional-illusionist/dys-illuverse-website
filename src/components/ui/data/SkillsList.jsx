@@ -28,9 +28,9 @@ export default function SkillList() {
 
       {skills.map((skill) => {
         // if skill is found in tagColours, use that style - otherwise default to grey
-        const colourClass = tagColours?.[skill] || "bg-gray-700/20 text-gray-300 border border-gray-500";
+        const colourClass = tagColours?.[skill] || "px-3 py-1.5 rounded-full bg-gray-700/20 text-gray-300 border border-gray-500";
         return (
-          <li key="skill" className={`${colourClass} px-2 py-1.5 rounded-full`}>
+          <li key="skill" className={`${colourClass} `}>
             {skill}
           </li>
         );

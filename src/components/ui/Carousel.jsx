@@ -27,7 +27,7 @@ export default function Carousel({ slides = [] }) {
           {slides.map(({ type, src, href, label, desc }, i) => (
             <div
               key={i}
-              className="min-w-full flex justify-center items-center bg-black/50 text-white"
+              className="min-w-full rounded-md flex justify-center items-center bg-black/50 text-white"
             >
               <a
                 href={href || "#"}
@@ -44,7 +44,7 @@ export default function Carousel({ slides = [] }) {
                   <video src={src} className="mb-2 mt-3 max-h-40 rounded shadow-lg" controls />
                 )}
                 <span className="text-4xl font-handjet text-pink-400/80">{label}</span>
-                <span className="font-coda mb-4 text-pink-600/40">{desc}</span>
+                <span className="font-coda mb-6 text-pink-600/40">{desc}</span>
                 <br />
               </a>
             </div>

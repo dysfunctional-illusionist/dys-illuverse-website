@@ -39,7 +39,7 @@ export default function Accordion() {
                   // safe access with fallback
                   const colourClass = tagColours?.[tag] || "bg-gray-700/20 text-gray-300 border border-gray-500";
                   return (
-                    <span key={tag} className={`${colourClass} px-2 py-0.5 rounded-full`}>
+                    <span key={tag} className={`${colourClass} px-3 py-1.5 rounded-full`}>
                       {tag}
                     </span>
                   );
