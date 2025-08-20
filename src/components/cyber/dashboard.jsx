@@ -39,12 +39,12 @@ export default function Dashboard() {
 
               {/* Filters */}
         <div className="gap-4 mb-6 font-inconsolata">
-          <select value={filterType} onChange={e => setFilterType(e.target.value)} className="bg-gray-800 p-2 rounded">
+          <select value={filterType} onChange={e => setFilterType(e.target.value)} className="bg-gray-800 p-2 rounded mr-2">
             <option>All</option>
             <option>CTF</option>
             <option>Writeup</option>
           </select>
-          <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="bg-gray-800 p-2 rounded">
+          <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="bg-gray-800 p-2 rounded ml-2">
             <option>All</option>
             <option>Completed</option>
             <option>In Progress</option>

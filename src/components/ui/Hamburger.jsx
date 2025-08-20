@@ -31,15 +31,22 @@ export default function MobileMenu({ items }) {
         </button>
 
         <nav className="flex flex-col gap-4 border-l-4 border-gray-900 bg-black p-4 bg-opacity-80 p-4 rounded-md">
-          {items.map(({ label, href, className }) => (
-            <a
-              key={href}
+          {items.map(({ label, type, href, className }) => (
+
+            type === "text" ? (
+              <a key={href}
               href={href}
               className={className}
               onClick={() => setOpen(false)} // Close on click
-            >
-              {label}
-            </a>
+              >
+                {label}
+              </a>
+            ) : type === "icon" ? (
+              <a href={href} class={className}>
+                <img src={label} alt="" class="w-6 h-6" />
+              </a>
+            ) : null
+
           ))}
         </nav>
       </div>

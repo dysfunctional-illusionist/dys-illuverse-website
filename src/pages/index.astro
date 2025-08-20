@@ -2,6 +2,7 @@
 import ThemeLayout from "@layouts/SunsetTheme.astro";
 import Layout from "@layouts/BaseLayout.astro";
 import Carousel from "@components/ui/Carousel.jsx";
+import StarDivider from "@components/ui/StarDivider.jsx";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, 
@@ -35,44 +36,69 @@ const slides = [
 <!-- 	<main class="px-4 py-8 max-w-screen-lg mx-auto"> -->
 		<main class="grid gap-8 p-8">
 
+			<section class="bg-black/10 rounded-md p-4">
 			<!-- intro quote for vibes -->
-			<blockquote class="border-l-4 border-purple-500 bg-purple-500/10 p-4 rounded-md font-handjet font-size-2rem text-purple-200 my-6 text-lg">
+			<!-- <blockquote class="max-w-md border-l-4 border-purple-500 bg-purple-500/10 p-2 rounded-md font-handjet font-size-2rem text-purple-200 my-6 text-lg">
 				handle with care: universe under construction &#9825
-			</blockquote>
+			</blockquote> -->
+
+			<!-- <div class="max-w-sm mx-auto rounded-xl shadow-md animate-pulse
+			border-l-4 border-purple-500 bg-purple-500/10 rounded-md font-handjet font-size-2rem text-purple-200">
+				<h1 class="text-md p-6"> announcement </h1>
+			</div> -->
+
+			<StarDivider />
 
 			<!-- Spotlight -->
-			<section class="col-span-full">
-				<h1 class="text-4xl md:text-6xl font-bold font-handjet bg-gradient-to-r from-pink-500 via-purple-500 to-red-500 bg-clip-text text-transparent">
+			<section class="col-span-full p-4 text-center content-center align-center justify-center">
+				<h1 class="mb-4 text-4xl md:text-6xl font-bold font-handjet bg-gradient-to-r from-pink-500 via-purple-500 to-red-500 bg-clip-text text-transparent">
 				welcome to. &#9734 all of this &#9734 (my humble abode)
 				</h1>
-				<p class="mt-2 text-lg text-white/80">call me illu. I like to craft fictional worlds and mess with tech and software stuff.
-					but you're here for the stories, right? </p>
-				<p class="font-light text-orange-100/60"> go ahead and explore. i'm always updating ^0^.</p>
+				<div class="max-w-sm mx-auto text-center rounded-md mt-2 p-4
+				my-4 p-4 rounded-xl relative shadow-2xl">
+					<p class="mt-2 text-lg text-white/80">call me illu. I like to craft fictional worlds and mess with tech and software stuff.
+						but you're here for the stories, right? </p>
+					<p class="font-light text-orange-100/60 mt-2"> go ahead and explore. i'm always updating ^0^.</p>
+				</div>
+
+				<StarDivider />
+
+				<!-- <div class="mt-6 max-w-sm mx-auto p-4 bg-black/80 rounded-xl shadow-md animate-pulse">
+					<h1 class="text-md"> announcement </h1>
+				</div>
+
+				<div class="max-w-sm mx-auto rounded-xl shadow-md animate-pulse
+				border-l-4 border-purple-500 bg-purple-500/10 rounded-md font-handjet font-size-2rem text-purple-200">
+					<h1 class="text-md p-6"> announcement </h1>
+				</div>
+
+				<StarDivider /> -->
 
 				<!-- spinny -->
-				<div id="carousel" class="mt-6">
+				<div id="carousel" class="mt-1">
 					<Carousel slides={slides} client:load />
 				</div>
 			</section>
 
 			<!-- Featured Grid -->
-			<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+			<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
 				<a href="/projects" class="bg-purple-700/30 hover:bg-purple-700/50 p-6 rounded-lg shadow-lg transition">
 				<h2 class="text-2xl font-handjet text-purple-500">PROJECTS PORTAL</h2>
 				<p class="text-white/70">fun stuff I&#39;ve been working on!</p>
 				</a>
-				<a href="/blog" class="bg-pink-700/30 hover:bg-pink-700/50 p-6 rounded-lg shadow-lg transition">
-				<h2 class="text-2xl font-handjet text-pink-400">not a blog</h2>
-				<p class="text-white/70">totally not a blog</p>
+				<a href="/about" class="bg-pink-700/30 hover:bg-pink-700/50 p-6 rounded-lg shadow-lg transition">
+				<h2 class="text-2xl font-handjet text-pink-400">~ about me ~</h2>
+				<p class="text-white/70">trivia and socials and yapping about myself (informally)</p>
 				</a>
-				<a href="/about" class="bg-red-700/30 hover:bg-red-700/50 p-6 rounded-lg shadow-lg transition">
+				<a href="/showcase" class="bg-red-700/30 hover:bg-red-700/50 p-6 rounded-lg shadow-lg transition">
 				<h2 class="text-2xl font-handjet text-red-200">about</h2>
-				<p class="text-white/70">trivia and socials and yapping about myself a little</p>
+				<p class="text-white/70">trivia and socials and yapping about myself (informally)</p>
 				</a>
 			</section>
+			
 
 
-
+		</section>
 		</main>
 	</Layout>
 </ThemeLayout>

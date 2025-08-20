@@ -1,18 +1,28 @@
 ---
 
 import MobileMenu from '@components/ui/Hamburger.jsx';
-import Dropdown from "@components/ui/data/DropdownPlay.jsx";
+import DropdownPlay from "@components/ui/data/DropdownPlay.jsx";
 // define props here if needed
 const { title } = Astro.props;
 
-const baseClass = "px-4 py-2 rounded transition";
+const baseClass = "px-2 py-2 rounded transition";
 const navItems = [
-  { label: "Home", href: "/", className: `${baseClass}` },
-  {
+  { label: "Home", type: "text", href: "/", className: `${baseClass}` }, {
     label: "Projects",
+    type: "text",
     href: "/projects",
     className: `${baseClass} animated-gradient animated-gradient-hover text-light hover:text-purple-500`,
-  },
+  }, {
+    label: "/icons/encrypted_9EFFEF.png",
+    type: "icon",
+    href: "/cybersec",
+    className: `${baseClass} hover:bg-cyan-300/30`,
+  }, {
+    label: "/icons/trophy_ECB576.png",
+    type: "icon",
+    href: "/showcase",
+    className:  `${baseClass} hover:bg-orange-200/20`,
+  }
   //{ label: "About", href: "/about", className: `${baseClass}` },
 ];
 
@@ -38,15 +48,29 @@ const navItems = [
 <!-- <header>
   <nav class="hidden md:flex gap-4"></nav> -->
 
+<meta charset="UTF-8" />
   <!-- sticks to top of screen -->
 <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
   <nav class="max-w-screen-xl mx-auto px-4 py-2 hidden md:flex gap-4">
    
     <!-- Desktop Nav -->
-    {navItems.map(({ label, href, className }) => (
-      <a href={href} class={className}>{label}</a>
-    ))}
-    <Dropdown client:load />
+      {navItems.map(({ label, type, href, className }, i) => (
+        <>
+          {type === "text" ? (
+            <a href={href} class={className}>{label}</a>
+          ) : type === "icon" ? (
+            <a href={href} class={className}>
+              <img src={label} alt="" class="w-6 h-6" />
+            </a>
+          ) : null}
+
+          {/* Add divider if not the last item */}
+          {i < navItems.length - 1 && (
+            <span class= "mx-0 mt-2 text-gray-400/30">✦</span>
+          )}
+        </>
+      ))}
+    <DropdownPlay client:load />
   </nav>
   <!-- Mobile -->
   <MobileMenu items={navItems} client:load />

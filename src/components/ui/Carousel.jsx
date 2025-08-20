@@ -27,26 +27,41 @@ export default function Carousel({ slides = [] }) {
           {slides.map(({ type, src, href, label, desc }, i) => (
             <div
               key={i}
-              className="min-w-full rounded-md flex justify-center items-center bg-black/50 text-white"
+              className="min-w-full rounded-md flex flex-col justify-center items-center bg-black/50 text-white"
             >
-              <a
-                href={href || "#"}
-                className="flex flex-col items-center cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleZoom(i);
-                }}
+              {/* Image / video → button for zoom */}
+              <button
+                type="button"
+                onClick={() => handleZoom(i)}
+                className="focus:outline-none"
+                aria-label={`Zoom ${label}`} // for screen readers
               >
                 {type === "img" && (
-                  <img src={src} alt={label} className="mb-2 mt-3 max-h-40 rounded shadow-lg" />
+                  <img
+                    src={src}
+                    alt={label}
+                    className="mb-2 mt-3 max-h-40 rounded shadow-lg"
+                  />
                 )}
                 {type === "video" && (
-                  <video src={src} className="mb-2 mt-3 max-h-40 rounded shadow-lg" controls />
+                  <video
+                    src={src}
+                    className="mb-2 mt-3 max-h-40 rounded shadow-lg"
+                    controls
+                  />
                 )}
-                <span className="text-4xl font-handjet text-pink-400/80">{label}</span>
-                <span className="font-coda mb-6 text-pink-600/40">{desc}</span>
-                <br />
+              </button>
+
+              {/* Label → real link */}
+              <a
+                href={href || "#"}
+                className="text-4xl font-handjet text-pink-400/80 hover:underline"
+              >
+                {label}
               </a>
+
+              {/* Description */}
+              <span className="font-coda mb-6 text-pink-600/40">{desc}</span>
             </div>
           ))}
         </div>
