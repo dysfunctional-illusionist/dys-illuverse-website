@@ -105,5 +105,5 @@ npm dedupe
 new fonts:
 npm install @fontsource/new-font
 add it to tailwind config
-@import in css
+@import in the themelayout file - add it to css
 add to themelayout

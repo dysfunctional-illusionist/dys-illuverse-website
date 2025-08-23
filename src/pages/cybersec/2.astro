@@ -1,0 +1,44 @@
+---
+import ThemeLayout from "@layouts/CybersecTheme.astro";
+import Layout from "@layouts/CyberlabLayout.astro";
+
+const lab = {
+  id: 2,
+  title: "BTLO: Cerulean",
+  date: "21-August-2025 - present",
+  category: "capture the flag!",
+  objective: "Dig through logs and form an attack timeline!",
+  steps: [
+    {
+        description: "The situation: phishing scam with fake IT support. We can work this out from opening Magnet and looking at the web history - VNC (for remote connection), public IP addresses...",
+        image: "/assets/labs/2/vnc.png",
+    }, {
+        description: "Tried to build a timeline of events, but couldn't see earlier than the 'what's my IP address' search. Found a singular email but couldn't find any more leads. Checked local logs, appdata - notepads showed up garbled text. Eventually got frustrated and took a break."
+    }, {
+        description: "The last time I did any sort of capture the flag was back in school during the CyberDiscovery challenges, so it's ok. I've never done digital forensics before, so I found some writeups and took a note of the tools they used. (see sources.)"
+    }, 
+  ],
+  notes: [
+    "asking for help is fine."
+  ],
+  sources: [
+    {
+      sourcetitle: "blue team labs online - cerulean",
+      link: "https://blueteamlabs.online/home/investigation/cerulean-625969e135",
+    }, {
+      sourcetitle: "mirthzhna's cerulean writeup",
+      link: "https://mirthz.xyz/blog/cerulean-writeup/",
+    }
+
+  ],
+  nextLabUrl: "/cybersec",
+}
+
+---
+
+<meta charset="UTF-8" />
+<ThemeLayout>
+	<Layout lab={lab}>
+        
+    </Layout>
+</ThemeLayout>

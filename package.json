@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@fontsource/aldrich": "^5.2.6",
     "@fontsource/amarante": "^5.2.6",
     "@fontsource/cantarell": "^5.2.6",
     "@fontsource/cantata-one": "^5.2.6",

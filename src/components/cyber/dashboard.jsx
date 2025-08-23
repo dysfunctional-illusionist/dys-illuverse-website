@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 const labs = [
   { id: 1, title: 'Lab Setup', 
     type: 'Writeup',
-    description: 'Making a safe testing environment!', 
+    description: 'Making a safe testing environment on my network!', 
+    status: 'done!' },
+  { id: 2, title: 'Investigation - Cerulean', 
+    type: 'CTF',
+    description: 'My first Blue Team Labs Online experience.', 
     status: 'in progress' },
-  // { id: 2, title: 'Reverse Engineering', 
-  //   type: 'Writeup',
-  //   description: 'Analyze malware binary.', 
-  //   status: 'In Progress' },
   // { id: 3, title: 'Network Forensics', 
   //   type: 'CTF',
   //   description: 'Capture and analyze packets.', 
@@ -69,8 +69,8 @@ export default function Dashboard() {
                   : 'bg-red-600/40'}`}>{lab.type}</span>
                 {/* <span className="bg-purple-600 px-2 py-1 rounded text-sm">{lab.difficulty}</span> */}
                 <span className={`px-2 py-1 rounded text-sm ${
-                  lab.status === 'Completed' ? 'text-green-400/70 bg-green-500/20 border border-green-600/70' 
-                  : lab.status === 'In Progress' ? 'text-yellow-300/70 bg-orange-300/20 border border-yellow-400/80' 
+                  lab.status === 'done!' ? 'text-green-400/70 bg-green-500/20 border border-green-600/70' 
+                  : lab.status === 'in progress' ? 'text-yellow-300/70 bg-orange-300/20 border border-yellow-400/80' 
                   : 'bg-red-600/40'}`}>{lab.status}</span>
               </div>
               <p className="text-gray-300 mb-2">{lab.description}</p>

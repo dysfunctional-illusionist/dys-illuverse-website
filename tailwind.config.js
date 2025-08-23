@@ -25,6 +25,7 @@ module.exports = {
         crimsonText: ['Crimson Text', 'cursive'],
         shantellSans: ['Shantell Sans', 'cursive'],
         cantataOne: ['Cantata One', 'serif'],
+        aldrich: ['Aldrich', 'serif'],
       }
     },
   },

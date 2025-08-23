@@ -5,7 +5,7 @@ import Layout from "@layouts/CyberlabLayout.astro";
 const lab = {
   id: 1,
   title: "hello world (lab setup)",
-  date: "18-August-2025",
+  date: "18-23-August-2025",
   category: "setting up",
   objective: "Create a safe environment for testing and logging!",
   steps: [
@@ -48,10 +48,56 @@ const lab = {
     }, {
         description: "Installed ubuntu!",
         image: "/assets/labs/1/ubuntu_logged_in.png",
-    },
+    }, {
+        description: "Now we have to download and install spunk:",
+        code: "wget -O splunk-9.4.4-f627d88b766b-linux-amd64.deb 'https://download.splunk.com/products/splunk/releases/9.4.4/linux/splunk-9.4.4-f627d88b766b-linux-amd64.deb'",
+    }, {
+        description: "Copy-paste doesn't work inside VirtualBox so we're going to use SSH to access this CLI inside my host's powershell:",
+        code: "sudo apt install openssh-server -y",
+    }, {
+        description: "I decided to change some network adapter settings to find the local IP address.",
+        image: "/assets/labs/1/bridged.png",
+    }, {
+        description: "Great, I'm now able to copy-paste and run commands from my host system!",
+        image: "/assets/labs/1/connect.png",
+    }, {
+        description: "Running download over the VM's NIC was very slow and ended up failing, so we downloaded locally and now we need a way to transfer it to our VM. After trying a few options (such as setting up shared folders with the VM), I ended up installing PuTTy and running:",
+        code: 'pscp "C:\\Users\\jessr\\Downloads\\shared\\splunk-9.4.4.deb" rui@192.168.0.44:/home/rui/'
+    }, {
+        description: "Run Debian's install:",
+        code: "sudo dpkg -i /home/rui/splunk-installer.deb"
+    }, {
+        description: "Accept license (and setup user):",
+        code: "sudo /opt/splunk/bin/splunk start --accept-license"
+    }, {
+        description: "Boot on start:",
+        code: "sudo /opt/splunk/bin/splunk enable boot-start"
+    }, {
+        description: "By using a bridged NIC, all my VMs are assigned an IP address on my LAN, so can communicate with any other device on the LAN as if they're a 'real' machine.",
+        image: "/assets/labs/1/network.png",
+    }, {
+        description: "It's easiest if every NIC has a static IP address so I don't need to spend time finding the new IP addresses every time I start up the VM. Here's the aim:",
+        image: "/assets/labs/1/staticip.png",
+    }, {
+        description: "on ubuntu -> sudo nano /etc/netplan/00-installer-config.yaml :",
+        image: "/assets/labs/1/set51.png",
+    }, {
+        description: "Splunk runs on the VM's IP address on port 8000. Now that we've set a static IP address, we know this must be:",
+        code: "http:192.168.0.51:8000"
+    }, {
+        description: "Yay!",
+        image: "/assets/labs/1/splunkenterprise.png",
+    }, {
+        description: "For good measure, let's set a static IP address on the kali VM...",
+        image: "/assets/labs/1/kalinetwork.png",
+    }, {
+        description: "And also set our static IP address on the windows VM.",
+        image: "/assets/labs/1/windowsip.png",
+    }, 
   ],
   notes: [
-    "Windows is very picky."
+    "Windows is very picky.",
+    "But I learnt a lot about the power of secured encryption (and the joys of local networking)."
   ],
   sources: [
     {
