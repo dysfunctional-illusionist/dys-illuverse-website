@@ -10,13 +10,40 @@ const lab = {
   objective: "Dig through logs and form an attack timeline!",
   steps: [
     {
-        description: "The situation: phishing scam with fake IT support. We can work this out from opening Magnet and looking at the web history - VNC (for remote connection), public IP addresses...",
-        image: "/assets/labs/2/vnc.png",
+      description: "The situation: phishing scam with fake IT support. We can work this out from opening Magnet and looking at the web history - VNC (for remote connection), public IP addresses...",
+      image: "/assets/labs/2/vnc.png",
     }, {
-        description: "Tried to build a timeline of events, but couldn't see earlier than the 'what's my IP address' search. Found a singular email but couldn't find any more leads. Checked local logs, appdata - notepads showed up garbled text. Eventually got frustrated and took a break."
+      description: "Tried to build a timeline of events, but couldn't see earlier than the 'what's my IP address' search. Found a singular email but couldn't find any more leads. Checked local logs, appdata - notepads showed up garbled text. Eventually got frustrated and took a break."
     }, {
-        description: "The last time I did any sort of capture the flag was back in school during the CyberDiscovery challenges, so it's ok. I've never done digital forensics before, so I found some writeups and took a note of the tools they used. (see sources.)"
-    }, 
+      description: "I found some writeups and took a note of the tools they used. (see sources.)"
+    }, {
+      description: "Started up hindsight gui (localhost:8080) and found Jane's chrome data directory.",
+      image: "/assets/labs/2/hindsight.png"
+    }, {
+      description: "Awesome, we got a lot! Let's save it as xlsx so we can open it in timeline explorer.",
+      image: "/assets/labs/2/hindsight_run.png"
+    }, {
+      description: "Q1. Open and search... magic!",
+      image: "/assets/labs/2/support.png"
+    }, {
+      description: "Q2. Opened magnet axiom. Checked locally accessed files first, but none matched the date of RDP. So I checked cloud service URLs... needless to say Google Drive was a little popular",
+      image: "/assets/labs/2/magnet.png"
+    }, {
+      description: "Q3. Today I learned about inside threat matrix. There's a code for every threat.",
+      image: "/assets/labs/2/exfiltration.png"
+    }, {
+      description: "Q4. Luckily magnet lets us peek at all the computer's accounts too!",
+      image: "/assets/labs/2/useracc.png"
+    }, {
+      description: "Q5. It even tells us what programs were installed when! -- same date as the remote access session? suspicious.",
+      image: "/assets/labs/2/slack.png"
+    }, {
+      description: "Q6. Back to our best friend, timeline explorer. URL search for slack... everything looks okay. Oh, cerulean is in the URL- is that a port number at the end?? sus bro!! a port number means communication with slack's servers (when this machine shouldn't really be using slack at all).",
+      image: "/assets/labs/2/slackurl.png"
+    }, {
+      description: "Q7. taking a look at magnet and RDP. I found it tricky to search by date, but we can see by origin (Jane) just fine.",
+      image: "/assets/labs/2/rdp.png"
+    }
   ],
   notes: [
     "asking for help is fine."
@@ -28,6 +55,9 @@ const lab = {
     }, {
       sourcetitle: "mirthzhna's cerulean writeup",
       link: "https://mirthz.xyz/blog/cerulean-writeup/",
+    }, {
+      sourcetitle: "Insider Threat Matrix",
+      link: "https://insiderthreatmatrix.org/articles/AR4/sections/IF001/subsections/IF001.001",
     }
 
   ],
