@@ -1,0 +1,37 @@
+---
+import ThemeLayout from "@layouts/CybersecTheme.astro";
+import Layout from "@layouts/CyberlabLayout.astro";
+
+const lab = {
+  id: 3,
+  title: "basic basic attack types",
+  date: "15-September-2025",
+  category: "Attacks & SIEM",
+  objective: "Brute force some attacks and watch them pop up on Splunk :)",
+  steps: [
+    {
+      description: "The lab setup needs its 'victim' machine to be monitored to forward its logs to Splunk. We're gonna use the Splunk Universal Forwarder for this - Splunk won't let me login from the VM's web browsers, so I downloaded it outside, downloaded OpenSSH again. (I allow it through the firewall, but it should be ok because in order to SSH in it'll ask for my login details.)",
+      image: "/assets/labs/3/ssh-setup.png",
+    }, {
+      description: "here's our PuTTY command again (replace single ' with double quotes)",
+      code: "pscp 'C:\\Users\\jessr\\Downloads\\shared\\splunkforwarder-10.0.0-windows-x64.msi' rui@192.168.0.48:C:\\Users\\rui\\Downloads",
+    }, {
+      description: "Now we setup to forward to our ubuntu server's static IP address (indexer? that's me!!! the ubuntu VM!)",
+      image: "/assets/labs/3/thatsme.png",
+    },
+  ],
+  notes: [
+  ],
+  sources: [
+  ],
+  nextLabUrl: "/cybersec",
+}
+
+---
+
+<meta charset="UTF-8" />
+<ThemeLayout>
+	<Layout lab={lab}>
+        
+    </Layout>
+</ThemeLayout>
