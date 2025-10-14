@@ -4,10 +4,10 @@ import Layout from "@layouts/CyberlabLayout.astro";
 
 const lab = {
   id: 3,
-  title: "basic basic attack types",
-  date: "15-September-2025",
+  title: "SIEM setup",
+  date: "15-September-2025 + 14-October-2025",
   category: "Attacks & SIEM",
-  objective: "Brute force some attacks and watch them pop up on Splunk :)",
+  objective: "set up splunk to log when things happen :)",
   steps: [
     {
       description: "The lab setup needs its 'victim' machine to be monitored to forward its logs to Splunk. We're gonna use the Splunk Universal Forwarder for this - Splunk won't let me login from the VM's web browsers, so I downloaded it outside, downloaded OpenSSH again. (I allow it through the firewall, but it should be ok because in order to SSH in it'll ask for my login details.)",
@@ -18,13 +18,52 @@ const lab = {
     }, {
       description: "Now we setup to forward to our ubuntu server's static IP address (indexer? that's me!!! the ubuntu VM!)",
       image: "/assets/labs/3/thatsme.png",
+    }, {
+      description: "There are some config files to check here:",
+      code: "C:\\Program Files\\SplunkUniversalForwarder\\etc\\system\\local\\",
+    }, {
+      description: "output.conf determines where to send logs.",
+      image: "/assets/labs/3/outputsconf.png"
+    }, {
+      description: "We also are gonna make inputs.conf (to tell splunk which types of logs to send)",
+      image: "/assets/labs/3/inputsconf.png"
+    }, {
+      description: "Open cmd and restart the universal forwarder...",
+      image: "/assets/labs/3/restartuf.png"
+    }, {
+      description: "Start the ubuntu server (VM) and login to splunk. Then we go to Settings > Forwarding/Receiving > Receive data > listen to port 9997, and save",
+      image: "/assets/labs/3/9997.png"
+    }, {
+      description: "on the endpoint (win10), we're gonna run this command to make sure the forwarder connected.",
+      code: "& 'C:\\Program Files\\SplunkUniversalForwarder\\bin\\splunk.exe' list forward-server"
+    }, {
+      description: "It lists active forwards to my server VM static IP (allegedly), but I had some login issues. I stopped the server, deleted all users (deleting passwd.cong), reset my password using user-seed.conf, restarted the server... and finally, it listed active servers."
+      
+    }, {
+      description: "we're gonna search splunk and... perfect!",
+      image: "/assets/labs/3/typehosts.png"
+    }, {
+      description: "We're gonna generate some events to test it out. First up: failed network login attempts (e.g. connecting to share files, or remote desktop) - open powershell on the victim computer and type this, which runs the command 5 times (log into my own IP address - 127.0.0.1 is a loopback - using IPC$ (interprocess communication) - using these credentials",
+      code: "for ($i=0; $i -lt 5; $i++) { cmd /c ''net use \\\\127.0.0.1\\ipc$ /user:wronguser notpassword''' }"
+    }, {
+      description: "",
+      image: "/assets/labs/3/wrongpass.png"
+    }, {
+      description: "a failed login of this type comes up as event code 4625, so we can search that:",
+      code: "index=* sourcetype=''WinEventLog:Security'' EventCode=4625"
+    }, {
+      description: "yes! that's me!",
+      image: "/assets/labs/3/4625.png"
+    }, {
+      description: "all that troubleshooting took a little bit out of me, so I'm gonna go over some more events over the coming posts ;)",
     },
   ],
   notes: [
+    "Keep your passwords secure. 8+ characters, Aa + 123 + *"
   ],
   sources: [
   ],
-  nextLabUrl: "/cybersec",
+  nextLabUrl: "/4",
 }
 
 ---

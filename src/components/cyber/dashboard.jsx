@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 
-// Sample lab/project data
+// add tags below
 const labs = [
   { id: 1, title: 'Lab Setup', 
-    type: 'Writeup',
+    type: 'Setup',
     description: 'Making a safe testing environment on my network!', 
     status: 'done!' },
   { id: 2, title: 'Investigation - Cerulean', 
     type: 'CTF',
     description: 'My first Blue Team Labs Online experience.', 
-    status: 'in progress' },
-  { id: 3, title: 'basic basic attack types', 
+    status: 'done!' },
+  { id: 3, title: 'Splunk dive in', 
     type: 'Writeup',
-    description: 'simulate a password brute force on myself.', 
-    status: 'in progress' },
+    description: 'getting my SIEM to listen to logs', 
+    status: 'done!' },
+  { id: 4, title: 'Troubleshooting an unstable laptop', 
+    type: 'Repairs & Fixes',
+    description: 'troubleshoot and salvage files from a failing Lenovo T14s', 
+    status: 'done!' },
   // { id: 4, title: 'Malware Analysis', 
   //   type: 'Writeup',
   //   description: 'Deep dive into malware behavior.', 
@@ -43,6 +47,7 @@ export default function Dashboard() {
             <option>All</option>
             <option>CTF</option>
             <option>Writeup</option>
+            <option>Repairs / Fixes</option>
           </select>
           <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} className="bg-gray-800 p-2 rounded ml-2">
             <option>All</option>
@@ -66,7 +71,8 @@ export default function Dashboard() {
                   lab.type === 'CTF' ? 'text-purple-400/90 bg-purple-700/40 border border-purple-600/70' 
                   : lab.type === 'Writeup' ? 'text-indigo-300/70 bg-indigo-700/40 border border-indigo-500/80' 
                   : lab.type === 'Setup' ? 'text-pink-300/70 bg-pink-700/40 border border-pink-500/80'
-                  : 'bg-red-600/40'}`}>{lab.type}</span>
+                  : lab.type === 'Repairs / Fixes' ? 'text-orange-400/70 bg-orange-700/40 border border-orange-500/80'
+                  : 'bg-white-600/40'}`}>{lab.type}</span>
                 {/* <span className="bg-purple-600 px-2 py-1 rounded text-sm">{lab.difficulty}</span> */}
                 <span className={`px-2 py-1 rounded text-sm ${
                   lab.status === 'done!' ? 'text-green-400/70 bg-green-500/20 border border-green-600/70' 

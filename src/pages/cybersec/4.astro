@@ -1,0 +1,101 @@
+---
+import ThemeLayout from "@layouts/CybersecTheme.astro";
+import Layout from "@layouts/CyberlabLayout.astro";
+
+const lab = {
+  id: 3,
+  title: "Help. my laptop is running an error a minute.",
+  date: "3-October-2025",
+  category: "IT, Hardware, Troubleshooting",
+  objective: "Troubleshoot an unstable laptop and save my brother's data!",
+  steps: [
+    {
+      description: "Took a bit of a break to do a game jam but we're so back(???) - my brother's ThinkPad T14s gen 2 is having some 'graphical issues'. Every time you start it up, it lasts about a minute or less before it freezes and glitches out. (Even when I tried to run malwarebytes to suss out malware!)",
+      image: "/assets/labs/4/oh.jpg",
+    }, {
+      description: "Reboot, login - crash immediately.",
+      image: "/assets/labs/4/FLT.jpg",
+    }, {
+      description: "Threats found and removed, which is good. Issues persist though.",
+      image: "/assets/labs/4/malware.jpg",
+    }, {
+      description: "We can't even log in to windows without issues, so we're going to boot into the Windows recovery environment (WinRE - on this model press F12 a lot whilst starting up) and find the command line, then check disk health:",
+      code: "chkdsk C: /f /r",
+    }, {
+      description: "run everyone's best friend, system file checker:",
+      code: "sfc /scannow",
+    }, {
+      description: "Restore from disk image (offline):",
+      code: "sfc /scannow /offbootdir=C:/ /offwindir=C:/Windows",
+    }, {
+      description: "Restarted to check if it's fixed, but we're still getting issues, so I did some research. Apparently RAM stick failures can cause random errors like this. But I opened up the laptop to see if I could test the RAM sticks separately and found that the RAM is soldered on, so there's not much I can do about that.",
+      image: "/assets/labs/4/opened.jpg",
+    }, {
+      description: "Downloading memtest86 to a flash drive so I can boot from this flash drive and give the RAM a few tests through the boot menu~",
+      image: "/assets/labs/4/memtest.jpg",
+    }, {
+      description: "Well. We're struggling to boot from the USB. As in, you select the option and it does nothing. probably because UEFI secure boot is on by default - it won't let me boot from an external drive!"
+    }, {
+      description: "But from this boot menu, I have discovered Lenovo Diagnostics so I'm running everything~",
+      image: "/assets/labs/4/diagnostics.jpg",
+    }, {
+      description: "Ran full tests for RAM, storage, CPU, Motherboard and Display. everything passed.",
+    }, {
+      description: "Tried to restart to see if we can perform a system update or reset, but we log in and...",
+      image: "/assets/labs/4/kernel.jpg",
+    }, {
+      description: "...We couldn't even get to the login screen this time!",
+      image: "/assets/labs/4/critical.jpg",
+    }, {
+      description: "We can barely boot/login, but there are a few important files on the computer that I wanna save. Luckily we have two potential methods. 1. Boot an OS from flash drive to access hard drive, or 2. Use hard drive enclosure/USB adapter (we have NVMe here). I have a spare USB, so I'm gonna try the first method - installing my spare kali onto my USB using Rufus~",
+      image: "/assets/labs/4/rufus.jpg",
+    }, {
+      description: "Of course, we WILL need to disable secure boot for this. Which we do by starting up normally with the power button, but immediate mashing F1 to enter the BIOS setup (and boot settings), then navigating to this setting.",
+      image: "/assets/labs/4/secure_boot_off.jpg",
+    }, {
+      description: "Tried to boot into kali but it stalled when trying to install; ended up downloading a different iso (for ubuntu jammy jellyfish) on that USB and booting into that instead. There's the option to 'just try out ubuntu', which we're gonna do.",
+      image: "/assets/labs/4/try_ubuntu.jpg",
+    }, {
+      description: "Running Ubuntu off the USB, we can access the hard drive (we need the recovery key, of course) and transfer large files and important things onto another external hard drive (not the ubuntu usb. trust me.)",
+      image: "/assets/labs/4/encrypted.jpg",
+    }, {
+      description: "We're finally free to completely reinstall windows. Grab another (or the same) usb, run the recovery media creation tool from here...",
+      image: "/assets/labs/4/recoverymedia.jpg",
+    }, {
+      description: "OS is officially kinda messed up and presented me with this handy screen. time to F1.",
+      image: "/assets/labs/4/kernelerr.jpg",
+    }, {
+      description: "Fresh install > Delete partition (delete the OS off the hard drive first before trying to install windows again)",
+      image: "/assets/labs/4/deletepartition.jpg",
+    }, {
+      description: "I waited for Windows to reinstall. I tested it a little. All was well, but then we ran into the same problems as before: memory management, kernel heap corruption... it's definitely a hardware problem.",
+    }, {
+      description: "For curiosity's sake, we're gonna revisit memtest86. It didn't run last time, so I did some digging and found the 'other version' (Memtest+) and installed that on my USB.",
+      image: "/assets/labs/4/deletepartition.jpg",
+    }, {
+      description: "Boot Menu > boot into the memtest USB > leave it running and... wow, that's a lot of red.",
+      image: "/assets/labs/4/memtestfail.jpg",
+    }, {
+      description: "Diagnosis: PC needs a hardware (RAM) replacement. but despite the persistent crashes, we salvaged important user data. Yay!",
+    },
+  ],
+  notes: [
+    "Quick ref! Power on + mash F1 = bios setup (boot settings); power on + mash F12 = boot menu (WinRecoveryEnvironment, etc)",
+    "Also if the Lenovo 'powers on' to a complete black screen, unplug everything, hold power button for 30s to discharge, flip laptop over and press a pin in the emergency reset button for 15s. Then leave for like 1 minute and try again. This clears EC cache which controls power and booting and stuff.",
+  ],
+  sources: [
+    { sourcetitle: "Memtest+ (the one that worked for me)",
+      link: "https://www.memtest.org"
+    }
+  ],
+  nextLabUrl: "/cybersec",
+}
+
+---
+
+<meta charset="UTF-8" />
+<ThemeLayout>
+	<Layout lab={lab}>
+        
+    </Layout>
+</ThemeLayout>
