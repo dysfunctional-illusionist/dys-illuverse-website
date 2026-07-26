@@ -1,0 +1,25 @@
+
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Theme from "@layouts/Hell_INFERNOtheme.astro";
+import HellDir_Buttons from "@components/hell/helldir.jsx";
+
+const pageTitle = "Login";
+
+export const buttons = [
+  { title: "Dis", url: "/DIS", exists: true },
+  { title: "Abyss", url: "/ABY", exists: false },
+  { title: "Heaven", url: "/HVN", exists: false },
+];
+
+
+---
+
+<meta charset="UTF-8" />
+<Theme>
+	<BaseLayout>
+
+    <HellDir_Buttons pages={buttons} />
+		
+	</BaseLayout>
+</Theme>

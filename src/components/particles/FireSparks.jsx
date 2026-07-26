@@ -57,7 +57,7 @@ export default function HellfireParticles() {
             direction: "top",
             random: true,
             straight: false,
-            outModes: { default: "out" },
+            outModes: "destroy",
             bounce: false,
           },
           twinkle: {
