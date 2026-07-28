@@ -42,8 +42,8 @@ export default function MobileMenu({ items }) {
                 {label}
               </a>
             ) : type === "icon" ? (
-              <a href={href} class={className}>
-                <img src={label} alt="" class="w-6 h-6" />
+              <a href={href} className={className}>
+                <img src={label} alt="" className="w-6 h-6" />
               </a>
             ) : null
 

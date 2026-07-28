@@ -10,27 +10,37 @@
             hand
         </button> */}
 
+export function setAccess(playAni) {
+  document.cookie = "archiveAccess=true; path=/; max-age=86400";
+  window.location.href = "/inferno/home";
+}
+
+// login system: press button, animate, gain access cookie
+// go to /inferno/home, check for cookie (in inferno layout) 
+// if not present, redirect to /inferno/login
+
 export default function Inferno_Login() {
+
   return (
     <>
       <div className="flex flex-row gap-6 justify-center items-center">
 
-        <button onClick={() => window.location.href = '/inferno' }
+        <button onClick={() => setAccess('/inferno') }
           className="ui-button rounded-lg border-2 text-4xl">
             hand
         </button>
 
-        <button onClick={() => window.location.href = '/inferno' }
+        <button onClick={() => setAccess('/inferno') }
           className="ui-button text-4xl">
             fingerprint
         </button>
 
-        <button onClick={() => window.location.href = '/inferno' }
+        <button onClick={() => setAccess('/inferno') }
           className="ui-button text-4xl border">
             blood
         </button>
 
-        <button onClick={() => window.location.href = '/inferno' }
+        <button onClick={() => setAccess('/inferno') }
           className="ui-button text-4xl">
             iris
         </button>
