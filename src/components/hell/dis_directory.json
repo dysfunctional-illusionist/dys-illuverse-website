@@ -1,0 +1,87 @@
+
+{
+    "aamon": {
+    "slug": "dis_007",
+    "name": "Aamon",
+    "profile_image": "",
+    "aliases": "",
+    "pronouns": ["he", "they"],
+    "court": "Wrath (Violence)",
+    "rank": "Marquis",
+    "status": "Active",
+    "designation": "DIS_007",
+    "height": "1.87m",
+    "weight": "66kg",
+    "birthday": ["1 July"],
+
+    "theme": {
+        "panel_text": "#FFFFFF",
+        "panel_bg": "#0743BB",
+        "panel_border": "#FFCA6E",
+        "button_bg": "#0743BB",
+        "button_bg_hover": "#2172FF",
+        "button_text": "#FFFFFF",
+        "button_text_hover": "#EFEEA7",
+        "button_border": "#FFCA6E",
+        "button_border_hover": "#EFEEA7"
+    }
+
+    },
+
+    "andras": {
+        "slug": "dis_063",
+        "name": "Andras",
+        "profile_image": "",
+        "aliases": "",
+        "pronouns": ["he"],
+        "court": "Wrath (Violence)",
+        "rank": "Marquis",
+        "status": "Active",
+        "designation": "DIS_063",
+        "height": "1.90m",
+        "weight": "86kg",
+        "birthday": ["11 September"],
+
+        "theme": {
+            "panel_text": "#FFFFFF",
+            "panel_bg": "#1C1B16",
+            "panel_border": "#CCC4C4",
+            "button_bg": "#1C1B16",
+            "button_bg_hover": "#585151",
+            "button_text": "#CCC4C4",
+            "button_text_hover": "#EFEEA7",
+            "button_border": "#86817E",
+            "button_border_hover": "#EFEEA7"
+        }
+
+    },
+
+    "march": {
+        "slug": "dis_063",
+        "name": "Andras",
+        "profile_image": "",
+        "aliases": "",
+        "pronouns": ["he"],
+        "court": "Wrath (Violence)",
+        "rank": "Marquis",
+        "status": "Active",
+        "designation": "DIS_063",
+        "height": "1.90m",
+        "weight": "86kg",
+        "birthday": ["11 September"],
+
+        "theme": {
+            "panel_text": "#FFFFFF",
+            "panel_bg": "#1C1B16",
+            "panel_border": "#CCC4C4",
+            "button_bg": "#1C1B16",
+            "button_bg_hover": "#585151",
+            "button_text": "#CCC4C4",
+            "button_text_hover": "#EFEEA7",
+            "button_border": "#86817E",
+            "button_border_hover": "#EFEEA7"
+        }
+
+    }
+
+}

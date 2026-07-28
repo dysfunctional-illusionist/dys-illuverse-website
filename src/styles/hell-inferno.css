@@ -28,6 +28,65 @@
   cursor: default;
 }
 
+/* test https://palette-tester.9elements.com */
+
+:root {
+  --panel-bg: rgba(0, 0, 0, 0.5);
+  --panel-opacity: 0.6;
+  --panel-border: #991b1b;
+  --panel-border-opacity: 0.7;
+  --button-bg: rgba(0, 0, 0, 0);
+  --button-bg-hover: rgba(0, 0, 0, 0.667);
+  --button-text: #750000;
+  --button-text-hover: #dd0000;
+  --button-border: #991b1b;
+  --button-border-hover: #ff0000;
+  --text: rgb(255, 145, 145);
+}
+
+.ui-panel {
+  background-color: rgb(from var(--panel-bg) r g b / var(--panel-opacity));
+  border: 2px solid rgb(from var(--panel-border) r g b / var(--panel-border-opacity));
+  padding: 3rem;
+  margin: 6rem;
+  border-radius: 0.5rem;
+  color: var(--text) 
+}
+
+.ui-title {
+  color: var(--title);
+}
+
+.ui-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid rgb(from var(--button-border) r g b / var(--panel-border-opacity));
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.ui-button:hover {
+  background: var(--button-bg-hover);
+  color: var(--button-text-hover);
+  border-color: var(--button-border-hover);
+}
+
+ui-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-border);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: .5s;
+}
+
+ui-button:hover {
+  background-color: var(--button-hover);
+  color: var(--button-text);
+}
+
 @layer base {
   html {
     @apply bg-black;

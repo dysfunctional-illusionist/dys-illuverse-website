@@ -10,6 +10,9 @@ export const buttons = [
   { title: "Dis", url: "/DIS", exists: true },
   { title: "Abyss", url: "/ABY", exists: false },
   { title: "Heaven", url: "/HVN", exists: false },
+  { title: "Helheim", url: "/HLM", exists: false },
+  { title: "Niflheim", url: "/NFL", exists: false },
+  { title: "Muspellheim", url: "/MSP", exists: false },
 ];
 
 
@@ -19,7 +22,12 @@ export const buttons = [
 <Theme>
 	<BaseLayout>
 
-    <HellDir_Buttons pages={buttons} />
+    <section class="min-h-screen ml-10 mr-10 mt-12 mb-10">
+        <section class="min-h-screen bg-black/40 p-10 rounded-md text-white">
+
+            <HellDir_Buttons pages={buttons} />
+      </section>
+    </section>
 		
 	</BaseLayout>
 </Theme>
