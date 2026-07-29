@@ -72,7 +72,7 @@
   border-color: var(--button-border-hover);
 }
 
-ui-button {
+/* ui-button {
   background-color: var(--button-bg);
   color: var(--button-text);
   border: 2px solid var(--button-border);
@@ -85,7 +85,7 @@ ui-button {
 ui-button:hover {
   background-color: var(--button-hover);
   color: var(--button-text);
-}
+} */
 
 @layer base {
   html {

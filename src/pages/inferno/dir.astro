@@ -4,15 +4,26 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Theme from "@layouts/Hell_INFERNOtheme.astro";
 import HellDir_Buttons from "@components/hell/helldir.jsx";
 
-const pageTitle = "Login";
+const pageTitle = "Afterlife Directory";
 
 export const buttons = [
   { title: "Dis", url: "/DIS", exists: true },
   { title: "Abyss", url: "/ABY", exists: false },
   { title: "Heaven", url: "/HVN", exists: false },
+  { title: "Tartarus", url: "/TRT", exists: false },
   { title: "Helheim", url: "/HLM", exists: false },
   { title: "Niflheim", url: "/NFL", exists: false },
   { title: "Muspellheim", url: "/MSP", exists: false },
+  { title: "Jahanna", url: "/JHN", exists: false },
+  { title: "Gehennah", url: "/GHN", exists: false },
+  { title: "Jigoku", url: "/JGK", exists: false },
+  { title: "Diyu", url: "/DYU", exists: false },
+  { title: "Naraka", url: "/NRK", exists: false },
+  { title: "Avici", url: "/AVC", exists: false },
+  { title: "Duat", url: "/DUA", exists: false },
+  { title: "Xibalba", url: "/XBL", exists: false },
+  { title: "Mictian", url: "/MTL", exists: false },
+  { title: "Bolotl", url: "/BLT", exists: false }
 ];
 
 
@@ -22,11 +33,10 @@ export const buttons = [
 <Theme>
 	<BaseLayout>
 
-    <section class="min-h-screen ml-10 mr-10 mt-12 mb-10">
-        <section class="min-h-screen bg-black/40 p-10 rounded-md text-white">
-
-            <HellDir_Buttons pages={buttons} />
-      </section>
+		<section class="min-h-screen m-20">
+			<div class="ui-panel">
+          <HellDir_Buttons pages={buttons} client:load/>
+      </div>
     </section>
 		
 	</BaseLayout>
