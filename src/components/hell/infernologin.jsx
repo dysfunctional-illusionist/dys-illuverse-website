@@ -1,14 +1,5 @@
-
-			{/* <button onClick={() => window.location.href = '/inferno' }
-        className="
-          font-doHyeon text-4xl text-red-950 px-10 py-6
-          rounded-lg shadow-lg text-red-950
-          hover:border-red-700 over:bg-red-700 hover:text-red-700
-          hover:from-black hover:via-red-900 hover:to-red-600
-          hover:text-red-700
-          transition-colors duration-200">
-            hand
-        </button> */}
+import { motion } from "motion/react"
+import {useState, useRef} from 'react';
 
 export function setAccess(playAni) {
   document.cookie = "archiveAccess=true; path=/; max-age=86400";
@@ -21,32 +12,88 @@ export function setAccess(playAni) {
 
 export default function Inferno_Login() {
 
-  return (
-    <>
-      <div className="flex flex-row gap-6 justify-center items-center">
+  const icons = [
+  "/icons/hand_8B1A10.svg",
+  "/icons/fingerprint_8B1A10.svg",
+  "/icons/drop_8B1A10.svg",
+  "/icons/eye_8B1A10.svg"
+];
 
-        <button onClick={() => setAccess('/inferno') }
-          className="ui-button rounded-lg border-2 text-4xl">
-            hand
-        </button>
+const HOLD_TIME = 2500;
 
-        <button onClick={() => setAccess('/inferno') }
-          className="ui-button text-4xl">
-            fingerprint
-        </button>
+const [progress, setProgress] = useState([0, 0, 0, 0]);
 
-        <button onClick={() => setAccess('/inferno') }
-          className="ui-button text-4xl border">
-            blood
-        </button>
+const timerRef = useRef(null);
+const startTimeRef = useRef(null);
 
-        <button onClick={() => setAccess('/inferno') }
-          className="ui-button text-4xl">
-            iris
-        </button>
+const [showWelcome, setShowWelcome] = useState(false);
 
+  const startPress = (index) => {
+    startTimeRef.current = Date.now();
+    setShowWelcome(false);
 
-		</div>
-    </>
-  );
+    timerRef.current = setInterval(() => {
+      const elapsed = Date.now() - startTimeRef.current;
+      const nextProgress = Math.min(elapsed / HOLD_TIME, 1);
+
+      setProgress((prev) => {
+        const updated = [...prev];
+        updated[index] = nextProgress;
+        return updated;
+      });
+
+      if (nextProgress >= 1) {
+        clearInterval(timerRef.current);
+
+        setProgress((prev) => {
+          const updated = [...prev];
+          updated[index] = 1;
+          return updated;
+        });
+
+        setTimeout(() => {
+          setShowWelcome(true);
+          setAccess('/inferno');
+        }, 600);
+      }
+    }, 16);
+  };
+
+  const cancelPress = (index) => {
+    clearInterval(timerRef.current);
+
+    setProgress((prev) => {
+      const updated = [...prev];
+      updated[index] = 0;
+      return updated;
+    });
+  };
+
+  return( <>
+    <div className="flex flex-wrap gap-6 justify-center items-center">
+      {icons.map((icon, index) => (
+        <motion.button
+          key={icon}
+          onPointerDown={() => startPress(index)}
+          onPointerUp={() => cancelPress(index)}
+          onPointerLeave={() => cancelPress(index)}
+          className="ui-button relative overflow-hidden rounded-lg
+                    w-24 h-24 p-2 flex items-center justify-center"
+        >
+          <motion.div
+            className="absolute bottom-0 left-0 w-full bg-red-700/30"
+            animate={{ height: `${progress[index] * 100}%`, }}
+            transition={{ duration: 0 }}
+          />
+
+          <img
+            src={icon}
+            alt=""
+            className="relative z-10 w-20 h-20"
+          />
+        </motion.button>
+      ))}
+    </div>
+    
+    </>)
 }

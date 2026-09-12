@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Theme from "@layouts/Hell_INFERNOtheme.astro";
+import Theme from "@layouts/HellTheme.astro";
 import Inferno_Login from "@components/hell/infernologin.jsx";
 
 
@@ -11,8 +11,10 @@ const pageTitle = "Login";
 <meta charset="UTF-8" />
 <Theme>
 	<BaseLayout>
-		<section class="min-h-screen m-20">
-			<div class="ui-panel">
+		<section class="flex justify-center">
+			<div class="ui-panel
+			bg-black/40 outline outline-red-800 flex-shrink inline-block
+			m-20 p-4 rounded-md">
 				<h1 class="ui-title text-center mb-10">Login</h1>
 				<Inferno_Login client:load/>
 			</div>

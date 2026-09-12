@@ -1,12 +1,11 @@
 ﻿import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 import path from 'path';
 import "dotenv/config";
 import viteConfig from "./vite.config.js";
 
 export default defineConfig({
-  integrations: [react(), tailwind()],
+  integrations: [react()],
   vite: viteConfig,
   // vite: {
   //   server: {

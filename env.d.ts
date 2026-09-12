@@ -6,10 +6,28 @@ declare module "@fontsource/hi-melody";
 declare module "@fontsource/cutive-mono";
 declare module "@fontsource/tektur";
 declare module "@fontsource/handjet";
+declare module "@fontsource/cantata-one";
+declare module "@fontsource/stoke";
+declare module "@fontsource/amarante";
+declare module "@fontsource/crimson-text";
+declare module "@fontsource/shantell-sans";
+declare module "@fontsource/cutive-mono";
+
 declare module "@layouts/BaseLayout.astro";
 declare module "@layouts/SunsetTheme.astro";
 declare module "@layouts/CybersecTheme.astro";
 declare module "@layouts/CyberBaseLayout.astro";
 declare module "@layouts/CyberLabLayout.astro";
+declare module "@layouts/Hell_INFERNOtheme.astro";
+declare module "@layouts/HellTheme.astro";
+
 declare module "@components/ui/StarDivider.jsx";
+declare module "@components/ui/Carousel.jsx";
+declare module "@components/ui/NavBar.astro";
+declare module "@components/ui/Footer.jsx";
+declare module "@layouts/BlankPage.astro"
 declare module "@components/cyber/dashboard.jsx";
+declare module "@components/hell/helldir.jsx";
+declare module "@components/hell/clock.jsx";
+declare module "@components/particles/FireSparks.jsx";
+declare module "@components/hell/infernologin.jsx";

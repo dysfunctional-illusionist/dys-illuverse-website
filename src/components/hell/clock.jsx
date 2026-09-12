@@ -26,8 +26,8 @@ export default function SystemClock() {
 
   return (
     <div>
-        <h1 class="text-center text-2xl font-cutiveMono"> <div>{day}.{month}.{year}</div> </h1>
-      	<h1 class="text-center text-6xl font-cutiveMono"> <div>{time} </div> </h1>
+        <h1 className="text-center text-2xl font-cutiveMono"> <div>{day}.{month}.{year}</div> </h1>
+      	<h1 className="text-center text-6xl font-cutiveMono"> <div>{time} </div> </h1>
     </div>
   );
 }

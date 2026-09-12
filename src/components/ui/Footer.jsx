@@ -17,7 +17,7 @@ export default function Footer( ) {
         </p>
 
 
-        <nav aria-label="Footer Navigation" class="mt-4 md:mt-0">
+        <nav aria-label="Footer Navigation" className="mt-4 md:mt-0">
           <ul className="flex space-x-6 text-sm">
             <li>
               <a

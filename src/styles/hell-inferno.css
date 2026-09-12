@@ -1,3 +1,10 @@
+@import "@fontsource/cantata-one/index.css";
+@import "@fontsource/stoke/index.css";
+@import "@fontsource/amarante/index.css";
+@import "@fontsource/crimson-text/index.css";
+@import "@fontsource/shantell-sans/index.css";
+@import "@fontsource/cutive-mono/index.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,13 +19,6 @@
     --color-sunset-200: #f15b6e;
     --color-sunset-100: #ff786b;
 }
-
-@import "@fontsource/cantata-one/index.css";
-@import "@fontsource/stoke/index.css";
-@import "@fontsource/amarante/index.css";
-@import "@fontsource/crimson-text/index.css";
-@import "@fontsource/shantell-sans/index.css";
-@import "@fontsource/cutive-mono/index.css";
 
 /* make sure font imports are in the layout file */
 
