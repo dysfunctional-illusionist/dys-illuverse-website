@@ -1,0 +1,34 @@
+---
+import Layout from "@layouts/BaseLayout.astro";
+import Theme from "@layouts/SunsetTheme.astro";
+import StarDivider from "@components/ui/StarDivider.jsx";
+---
+
+<Theme>
+	<Layout title="love the backgrounds?">
+
+		<section class="bg-black/40 p-4 rounded-md text-white px-6 py-12 flex flex-col items-center">
+		
+		<p>play with the empty backgrounds. best enjoyed on PC.</p>
+
+		<StarDivider client:load/>
+
+		<a href="/sunset" class="bg-purple-700/30 hover:bg-purple-700/50 hover:outline-purple-500
+		outline outline-offset-2 outline-purple-500/50 p-6 rounded-lg shadow-lg transition m-4">
+			<h2 class="text-2xl font-handjet text-purple-500">Sunset</h2>
+		</a>
+
+		<a href="/hell" class="bg-red-700/30 hover:bg-red-700/50 hover:outline-red-500
+		outline outline-offset-2  outline-red-500/50 p-6 rounded-lg shadow-lg transition m-4">
+			<h2 class="text-2xl font-handjet text-red-500">Hell</h2>
+		</a>
+
+		<a href="/networks" class="bg-blue-700/30 hover:bg-blue-700/50 hover:outline-cyan-500
+		outline outline-offset-2 outline-cyan-500/50 p-6 rounded-lg shadow-lg transition m-4">
+			<h2 class="text-2xl font-handjet text-cyan-500">Elysium</h2>
+		</a>
+
+		</section>
+
+	</Layout>
+</Theme>

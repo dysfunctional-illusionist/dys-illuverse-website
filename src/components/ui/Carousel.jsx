@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
 
+/** 
+ * @typedef (Object) Slide
+ * @property {string} href
+ * @property {string} type
+ * @property {string} src
+ * @property {string} label
+ * @property {string} desc
+ */
+
+/**
+ * @param {{ slides?: Slide[] }} props
+ */
+
+
 export default function Carousel({ slides = [] }) {
   const [current, setCurrent] = useState(0);
   const [zoomed, setZoomed] = useState(null); // index of zoomed slide

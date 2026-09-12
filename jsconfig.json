@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
@@ -10,5 +12,5 @@
       "@labimg/*": ["./src/assets/labs/*"],
     }
   },
-  "include": ["src"]
+  "include": ["src", "tsconfig.json"]
 }

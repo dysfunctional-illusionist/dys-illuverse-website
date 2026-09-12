@@ -1,0 +1,15 @@
+declare module "@fontsource/handjet";
+declare module "@fontsource/coda";
+declare module "@fontsource/do-hyeon";
+declare module "@fontsource/cantarell";
+declare module "@fontsource/hi-melody";
+declare module "@fontsource/cutive-mono";
+declare module "@fontsource/tektur";
+declare module "@fontsource/handjet";
+declare module "@layouts/BaseLayout.astro";
+declare module "@layouts/SunsetTheme.astro";
+declare module "@layouts/CybersecTheme.astro";
+declare module "@layouts/CyberBaseLayout.astro";
+declare module "@layouts/CyberLabLayout.astro";
+declare module "@components/ui/StarDivider.jsx";
+declare module "@components/cyber/dashboard.jsx";

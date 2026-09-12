@@ -32,9 +32,9 @@ export default function Dropdown() {
           origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg
           bg-black/60 ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
             <div className="py-1">
-              <a href="/showcase/sunset" className="block px-4 py-2 text-sm !text-orange-200 hover:bg-purple-900">Sunset</a>
-              <a href="/showcase/hell" className="block px-4 py-2 text-sm !text-red-400 hover:bg-red-900">Hell</a>
-              <a href="/showcase/networks" className="block px-4 py-2
+              <a href="/play/sunset" className="block px-4 py-2 text-sm !text-orange-200 hover:bg-purple-900">Sunset</a>
+              <a href="/play/hell" className="block px-4 py-2 text-sm !text-red-400 hover:bg-red-900">Hell</a>
+              <a href="/play/networks" className="block px-4 py-2
                 text-sm !text-cyan-200
                 hover:bg-blue-700
                 ">Elysium</a>
