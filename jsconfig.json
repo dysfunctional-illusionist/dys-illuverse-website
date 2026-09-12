@@ -3,13 +3,13 @@
     "baseUrl": "./src",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@layouts/*": ["layouts/*"],
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
-      "@utility/*": ["utility/*"],
-      "@showcase/*": ["pages/showcase/*"],
-      "@assets/*": ["assets/*"],
-      "@labimg/*": ["assets/labs/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utility/*": ["./src/utility/*"],
+      "@showcase/*": ["./src/pages/showcase/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@labimg/*": ["./src/assets/labs/*"],
     }
   },
   "include": ["src", "tsconfig.json"]
