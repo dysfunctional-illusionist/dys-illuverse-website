@@ -10,7 +10,6 @@ export default function SkillList() {
     "Curiosity & Continuous Learning",
     "Teamwork",
     "Solo work",
-    "studying CompTIA Security+",
     "Basic Cryptography",
     "Bash (Windows, Linux)",
     "Risk Identification",
